@@ -4,7 +4,7 @@ Este repositorio centraliza los **workflows** y **skills** reutilizables para ag
 
 La idea central es que estos archivos actúan como un **sistema operativo de desarrollo** para el agente: le dicen exactamente cómo nombrar tareas, qué pasos seguir, cómo revisar código y cómo hacer commit, de forma consistente en cualquier proyecto que los importe.
 
-> **Modo de uso previsto:** este repo se incorpora como **submódulo Git** en cada proyecto que quiera beneficiarse de los workflows y skills. Así, todos los proyectos comparten la misma base de conocimiento del agente y actualizan sus instrucciones con un simple `git submodule update`.
+> **Modo de uso previsto:** este repo está diseñado para integrar sus carpetas `.agent/` y `.cursor/` directamente en la raíz de cualquier proyecto consumer mediante `git checkout` dirigido. Todos los proyectos comparten la misma base de conocimiento y actualizan sus instrucciones con un único comando.
 
 ---
 
@@ -12,28 +12,35 @@ La idea central es que estos archivos actúan como un **sistema operativo de des
 
 ```
 Wokflows/
-├── workflows/          # Procesos orquestados (slash commands /nombre)
-│   ├── task-add.md     # /task-add  → Añadir tarea al backlog
-│   ├── task-dev.md     # /task-dev  → Ciclo completo de desarrollo
-│   ├── bug-add.md      # /bug-add   → Registrar una anomalía (bug)
-│   ├── bug-fix.md      # /bug-fix   → Resolver una anomalía
-│   ├── commit.md       # /commit    → Generar commit semántico
-│   ├── generate-bdd.md # /generate-bdd → Generar feature file BDD
-│   ├── generate-doc.md # /generate-doc → Generar documentación técnica
-│   ├── review-code.md  # /review-code  → Revisión de código
-│   ├── review-fix.md   # /review-fix   → Revisión de un bug fix
-│   └── review-test.md  # /review-test  → Revisión de la suite de tests
-└── skills/             # Habilidades especializadas (llamadas desde workflows)
-    ├── task-namer/     # Calcula ID y ruta de una tarea
-    ├── task-generator/ # Genera el documento de tarea completo
-    ├── doc-generator/  # Genera/actualiza documentación técnica
-    ├── bdd-generator/  # Crea feature files Gherkin en español
-    ├── code-reviewer/  # Audita calidad del código (puntuación 1-10)
-    ├── test-reviewer/  # Audita calidad de la suite de tests
-    ├── bug-fix-reviewer/ # Verifica que un fix resuelve el problema raíz
-    ├── commit-generator/ # Genera mensajes de commit semánticos
-    └── dev-flow/       # Orquestador del ciclo BDD → TDD → Dev → QA → Doc
+├── .agent/                    # Fuente canónica (leída por Antigravity y similares)
+│   ├── workflows/             # Procesos orquestados (slash commands /nombre)
+│   │   ├── task-add.md        # /task-add    → Añadir tarea al backlog
+│   │   ├── task-dev.md        # /task-dev    → Ciclo completo de desarrollo
+│   │   ├── bug-add.md         # /bug-add     → Registrar una anomalía (bug)
+│   │   ├── bug-fix.md         # /bug-fix     → Resolver una anomalía
+│   │   ├── commit.md          # /commit      → Generar commit semántico
+│   │   ├── generate-bdd.md    # /generate-bdd → Generar feature file BDD
+│   │   ├── generate-doc.md    # /generate-doc → Generar documentación técnica
+│   │   ├── review-code.md     # /review-code  → Revisión de código
+│   │   ├── review-fix.md      # /review-fix   → Revisión de un bug fix
+│   │   └── review-test.md     # /review-test  → Revisión de la suite de tests
+│   └── skills/                # Habilidades especializadas
+│       ├── task-namer/        # Calcula ID y ruta de una tarea
+│       ├── task-generator/    # Genera el documento de tarea completo
+│       ├── doc-generator/     # Genera/actualiza documentación técnica
+│       ├── bdd-generator/     # Crea feature files Gherkin en español
+│       ├── code-reviewer/     # Audita calidad del código (puntuación 1-10)
+│       ├── test-reviewer/     # Audita calidad de la suite de tests
+│       ├── bug-fix-reviewer/  # Verifica que un fix resuelve el problema raíz
+│       ├── commit-generator/  # Genera mensajes de commit semánticos
+│       └── dev-flow/          # Orquestador del ciclo BDD → TDD → Dev → QA → Doc
+├── .cursor/                   # Leída por Cursor IDE
+│   ├── commands/              # ← junction → .agent/workflows/  (mismos archivos)
+│   └── skills/                # ← junction → .agent/skills/     (mismas carpetas)
+└── README.md
 ```
+
+> **Fuente única de verdad:** los archivos viven en `.agent/`. Las carpetas bajo `.cursor/` son junctions locales (Windows) o symlinks (Unix) que apuntan a `.agent/`, de modo que ambas herramientas leen exactamente el mismo contenido sin duplicación.
 
 ---
 
@@ -191,57 +198,57 @@ Keywords y contenido **siempre en español**.
 
 ---
 
-## 🔗 Uso como Submódulo Git
+## 🔗 Integración en proyectos consumer
 
-Este repositorio está diseñado para vivir dentro de otros proyectos como un **submódulo Git**. Esto significa que cada proyecto mantiene una referencia a un commit concreto de este repo, garantizando reproducibilidad y permitiendo actualizar el "sistema operativo del agente" de forma controlada.
+Este repositorio está diseñado para que sus carpetas `.agent/` y `.cursor/` aterricen **directamente en la raíz de cualquier proyecto** que quiera usar los workflows y skills. La integración se hace mediante `git checkout` dirigido, que copia solo las carpetas que importan sin crear dependencias de submódulo complejas.
 
-### 1. Añadir el submódulo a un proyecto nuevo
-
-```bash
-# Desde la raíz del proyecto consumer:
-git submodule add https://github.com/<org>/Wokflows.git .agent
-```
-
-Se recomienda el destino `.agent/` porque los agentes de IA (Antigravity, Cursor, etc.) buscan workflows y skills en rutas como `.agent/workflows/` y `.agent/skills/` por convención.
-
-### 2. Clonar un proyecto que ya tiene el submódulo
+### 1. Setup inicial en un proyecto nuevo
 
 ```bash
-# Clonar incluyendo el submódulo en un paso:
-git clone --recurse-submodules https://github.com/<org>/mi-proyecto.git
+# Registrar este repo como remote (sólo una vez):
+git remote add wokflows https://github.com/<org>/Wokflows.git
+git fetch wokflows
 
-# O si ya has clonado sin él:
-git submodule update --init --recursive
+# Traer las carpetas .agent/ y .cursor/ a la raíz del proyecto:
+git checkout wokflows/main -- .agent .cursor
+
+# Commitear en el proyecto consumer:
+git add .agent .cursor
+git commit -m "chore(agent): init AI agent configuration from Wokflows"
 ```
 
-### 3. Actualizar a la última versión de los workflows
+### 2. Actualizar a la última versión
 
 ```bash
-# Desde la raíz del proyecto consumer:
-git submodule update --remote .agent
-git add .agent
-git commit -m "chore(agent): update Wokflows submodule to latest"
+git fetch wokflows
+git checkout wokflows/main -- .agent .cursor
+git add .agent .cursor
+git commit -m "chore(agent): update AI agent configuration to latest"
 ```
 
-### 4. Estructura resultante en el proyecto consumer
+### 3. Estructura resultante en el proyecto consumer
 
 ```
 mi-proyecto/
-├── .agent/                  ← submódulo (este repo)
+├── .agent/                    ← workflows y skills (leído por Antigravity)
 │   ├── workflows/
 │   │   ├── task-add.md
 │   │   ├── task-dev.md
 │   │   └── ...
 │   └── skills/
 │       ├── task-namer/
-│       ├── bdd-generator/
 │       └── ...
-├── task_config.yaml         ← configuración específica del proyecto
+├── .cursor/                   ← mismo contenido (leído por Cursor IDE)
+│   ├── commands/              # mismos *.md que .agent/workflows/
+│   └── skills/                # mismas carpetas que .agent/skills/
+├── task_config.yaml           ← configuración específica del proyecto
 ├── src/
 └── docs/
 ```
 
-### 5. Configurar `task_config.yaml` en el proyecto
+> **Sin duplicación:** en el consumer los archivos `.cursor/` son copias reales (Git no preserva junctions entre repos), pero provienen del mismo commit de Wokflows. Al actualizar, `git checkout wokflows/main -- .agent .cursor` regenera ambas carpetas en una sola operación.
+
+### 4. Configurar `task_config.yaml` en el proyecto
 
 Crea este archivo en la raíz del proyecto consumer para que los workflows calculen IDs y rutas correctamente:
 
@@ -266,4 +273,36 @@ levels:
       path: packages/{name}/docs/backlog/
 ```
 
-> **Nota:** `task_config.yaml` **no** forma parte de este submódulo — es propio de cada proyecto y debe estar en `.gitignore` o commiteado en el repo consumer según el flujo del equipo.
+> **Nota:** `task_config.yaml` es propio de cada proyecto y no forma parte de Wokflows.
+
+---
+
+## 🛠 Mantenimiento de este repo
+
+Las carpetas `.cursor/commands/` y `.cursor/skills/` son **junctions** (Windows) que apuntan a `.agent/workflows/` y `.agent/skills/` respectivamente. Git los trackea como archivos independientes, por lo que:
+
+- Al editar un workflow en `.agent/workflows/`, el cambio se refleja automáticamente en `.cursor/commands/` (misma carpeta física).
+- Al hacer commit, hay que incluir **ambas rutas**: `git add .agent .cursor` para que Git registre el cambio en los dos árboles.
+
+```bash
+# Flujo de edición en este repo:
+# 1. Edita el archivo en .agent/workflows/ o .agent/skills/
+# 2. Commitea incluyendo ambas carpetas:
+git add .agent .cursor
+git commit -m "..."
+git push
+```
+
+Si por alguna razón las junctions se rompen (p.ej. clonar en Unix), recréalas:
+
+```bash
+# Unix / Mac:
+rm -rf .cursor/commands .cursor/skills
+ln -s ../.agent/workflows .cursor/commands
+ln -s ../.agent/skills    .cursor/skills
+
+# Windows (PowerShell, sin admin necesario):
+Remove-Item .cursor\commands, .cursor\skills -Recurse -Force
+New-Item -ItemType Junction -Path ".cursor\commands" -Target ".agent\workflows"
+New-Item -ItemType Junction -Path ".cursor\skills"   -Target ".agent\skills"
+```
