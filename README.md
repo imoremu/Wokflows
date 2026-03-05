@@ -1,6 +1,6 @@
 # 🤖 Wokflows — AI Agent Workflows & Skills
 
-Este repositorio centraliza los **workflows** y **skills** reutilizables para agentes de IA (Cursor, Antigravity, etc.) que siguen el estándar **Issue-as-Code distribuido v3.1**.
+Este repositorio centraliza los **workflows** y **skills** reutilizables para agentes de IA (Cursor, Antigravity, etc.) que siguen el estándar **Issue-as-Code distribuido v3.0**.
 
 La idea central es que estos archivos actúan como un **sistema operativo de desarrollo** para el agente: le dicen exactamente cómo nombrar tareas, qué pasos seguir, cómo revisar código y cómo hacer commit, de forma consistente en cualquier proyecto que los importe.
 
@@ -26,7 +26,6 @@ Wokflows/
 │   │   └── review-test.md     # /review-test  → Revisión de la suite de tests
 │   └── skills/                # Habilidades especializadas
 │       ├── task-namer/        # Calcula ID y ruta de una tarea
-│       ├── task-generator/    # Genera el documento de tarea completo
 │       ├── doc-generator/     # Genera/actualiza documentación técnica
 │       ├── bdd-generator/     # Crea feature files Gherkin en español
 │       ├── code-reviewer/     # Audita calidad del código (puntuación 1-10)
@@ -50,15 +49,19 @@ El nombre del archivo determina el slash command. Por ejemplo, `task-add.md` se 
 
 ### `/task-add` — Añadir Tarea al Backlog
 
-Registra una nueva tarea en el backlog del producto siguiendo el estándar **Issue-as-Code v3.1**.
+Registra una nueva tarea en el backlog del producto siguiendo el estándar **Issue-as-Code distribuido v3.0 (Master/Package)**.
+
+**Niveles:**
+- **Master**: Tarea de negocio/épica. ID: `T-APX-XXXX`. Ubicación: `docs/plan/tasks/`.
+- **Package**: Tarea técnica de componente. ID: `T-APX-[PKG]-XXXX`. Ubicación: `<paquete>/docs/backlog/`.
 
 **Pasos:**
-1. **Clasificación** (`task-namer`): Determina si es Master o Componente, calcula el ID secuencial y la ruta destino desde `task_config.yaml`.
-2. **Metadatos** (`task-generator`): Aplica el template, asigna Weight y estado inicial `backlog`.
-3. **Generación** (`task-generator`): Crea el `.md` con secciones de Objetivo, BDD y TDD.
-4. **Trazabilidad** (`doc-generator`): Enlaza la tarea en su Tarea Maestra correspondiente.
+1. **Identificación**: Determinar nivel y paquete (HMI, CTX, AI, LC).
+2. **Asignación**: Calcular ID secuencial y asignar **Weight** (0-10 Crítica, 10-100 Alta, 100-1000 Desarrollo, 1000+ Roadmap).
+3. **Creación**: Generar el archivo `.md` con el formato correspondiente y la vinculación obligatoria (parent_id).
+4. **Vinculación**: Sincronizar enlaces entre Master y Package.
 
-**IDs:** `T-[PRJ]-XXXX` (Master) · `T-[PRJ]-[COMP]-XXXX` (Componente)
+**IDs:** `T-APX-XXXX` (Master) · `T-APX-[PKG]-XXXX` (Package)
 
 ---
 
@@ -141,7 +144,6 @@ Las skills son especialistas que los workflows invocan para tareas concretas. No
 | Skill | Responsabilidad |
 |---|---|
 | `task-namer` | Calcula ID secuencial y ruta desde `task_config.yaml` |
-| `task-generator` | Genera el documento de tarea con template completo |
 | `doc-generator` | Crea/actualiza `docs/architecture/design_*.md` con diagramas Mermaid |
 | `bdd-generator` | Produce feature files Gherkin en español con tags y trazabilidad RF |
 | `code-reviewer` | Auditoría de código multi-categoría con puntuación 1–10 |
@@ -154,17 +156,17 @@ Las skills son especialistas que los workflows invocan para tareas concretas. No
 
 ## 🏗 Estándares
 
-### Issue-as-Code Distribuido v3.1
+### Issue-as-Code Distribuido v3.0
 
 Cada componente (servicio, app, paquete) es dueño de su propio backlog. Las tareas maestras en `docs/plan/tasks/` dan visibilidad global; las de componente viven junto al código.
 
 ### Estructura de IDs
 
 ```
-T-[PRJ]-XXXX           # Tarea Maestra
-T-[PRJ]-[COMP]-XXXX    # Tarea de Componente
-B-[PRJ]-XXXX           # Bug Maestro
-B-[PRJ]-[COMP]-XXXX    # Bug de Componente
+T-APX-XXXX             # Tarea Maestra
+T-APX-[PKG]-XXXX       # Tarea de Paquete
+B-APX-XXXX             # Bug Maestro
+B-APX-[PKG]-XXXX       # Bug de Paquete
 ```
 
 `[PRJ]` y `[COMP]` se configuran en `task_config.yaml` de cada proyecto.
