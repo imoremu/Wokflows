@@ -1,6 +1,6 @@
 ---
 name: commit-generator
-description: Generates commit messages following Aprexx v0.2 standards (Conventional Commits + Phase/Block prefix)
+description: Generates commit messages following Nereodata standards (Conventional Commits + Phase/Block prefix)
 ---
 
 # Commit Generator Skill

@@ -1,6 +1,6 @@
 ---
 name: task-generator
-description: Generates development tasks following Aprexx v0.2 standards (BDD -> TDD -> Review -> Dev -> Review -> Doc)
+description: Generates development tasks following Nereodata standards (BDD -> TDD -> Review -> Dev -> Review -> Doc)
 ---
 
 # Task Generator Skill

@@ -1,5 +1,5 @@
 name: bdd-generator
-description: Generates Gherkin feature files following Aprexx v0.2 standards (Full Spanish Localization)
+description: Generates Gherkin feature files following Nereodata standards (Full Spanish Localization)
 ---
 
 # BDD Generator Skill
