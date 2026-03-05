@@ -8,7 +8,7 @@ This workflow guides the agent in creating a new BDD feature file using the `bdd
 
 1.  **Analyze Request**:
     *   Identify the functionality to be tested.
-    *   Determine the target package (hmi, context, licensing, orchestrator).
+    *   Determine the target component (HMI, CTX, AI, LC).
 
 2.  **Read Skill**:
     *   Read `skills/bdd-generator/SKILL.md` to load the standards and template.
@@ -19,7 +19,7 @@ This workflow guides the agent in creating a new BDD feature file using the `bdd
     *   Include references to Requirements (RF-XXX).
 
 4.  **Create File**:
-    *   Use `write_to_file` to create the `.feature` file in `packages/<package>/tests/features/`.
+    *   Use `write_to_file` to create the `.feature` file in `<componente>/tests/features/`.
 
 5.  **Review**:
     *   Ask the user to confirm the scenarios before proceeding to step definitions.

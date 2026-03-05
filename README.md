@@ -49,19 +49,19 @@ El nombre del archivo determina el slash command. Por ejemplo, `task-add.md` se 
 
 ### `/task-add` — Añadir Tarea al Backlog
 
-Registra una nueva tarea en el backlog del producto siguiendo el estándar **Issue-as-Code distribuido v3.0 (Master/Package)**.
+Registra una nueva tarea en el backlog del producto siguiendo el estándar **Issue-as-Code distribuido v3.0 (Master/Componente)**.
 
 **Niveles:**
-- **Master**: Tarea de negocio/épica. ID: `T-APX-XXXX`. Ubicación: `docs/plan/tasks/`.
-- **Package**: Tarea técnica de componente. ID: `T-APX-[PKG]-XXXX`. Ubicación: `<paquete>/docs/backlog/`.
+- **Master**: Tarea de negocio/épica. ID: `T-[PRJ]-XXXX`. Ubicación: `docs/plan/tasks/`.
+- **Componente**: Tarea técnica de componente. ID: `T-[PRJ]-[COMP]-XXXX`. Ubicación: `<componente>/docs/backlog/`.
 
 **Pasos:**
 1. **Identificación**: Determinar nivel y paquete (HMI, CTX, AI, LC).
 2. **Asignación**: Calcular ID secuencial y asignar **Weight** (0-10 Crítica, 10-100 Alta, 100-1000 Desarrollo, 1000+ Roadmap).
 3. **Creación**: Generar el archivo `.md` con el formato correspondiente y la vinculación obligatoria (parent_id).
-4. **Vinculación**: Sincronizar enlaces entre Master y Package.
+4. **Vinculación**: Sincronizar enlaces entre Master y Componente.
 
-**IDs:** `T-APX-XXXX` (Master) · `T-APX-[PKG]-XXXX` (Package)
+**IDs:** `T-[PRJ]-XXXX` (Master) · `T-[PRJ]-[COMP]-XXXX` (Componente)
 
 ---
 
@@ -71,7 +71,7 @@ Orquesta el ciclo completo **BDD → TDD → Dev → QA → Doc → Commit** par
 
 **Modos:**
 - **Master Mode** (`T-[PRJ]-XXXX`): Ejecuta secuencialmente todas las tareas de componente hijas.
-- **Package Mode** (`T-[PRJ]-[COMP]-XXXX`): Foco exclusivo en un componente técnico.
+- **Component Mode** (`T-[PRJ]-[COMP]-XXXX`): Foco exclusivo en un componente técnico.
 
 **Comandos relacionados:** `/review-test` · `/review-code` · `/generate-doc` · `/commit`
 
@@ -163,10 +163,10 @@ Cada componente (servicio, app, paquete) es dueño de su propio backlog. Las tar
 ### Estructura de IDs
 
 ```
-T-APX-XXXX             # Tarea Maestra
-T-APX-[PKG]-XXXX       # Tarea de Paquete
-B-APX-XXXX             # Bug Maestro
-B-APX-[PKG]-XXXX       # Bug de Paquete
+T-[PRJ]-XXXX             # Tarea Maestra
+T-[PRJ]-[COMP]-XXXX       # Tarea de Componente
+B-[PRJ]-XXXX             # Bug Maestro
+B-[PRJ]-[COMP]-XXXX       # Bug de Componente
 ```
 
 `[PRJ]` y `[COMP]` se configuran en `task_config.yaml` de cada proyecto.

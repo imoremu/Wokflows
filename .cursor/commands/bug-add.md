@@ -4,21 +4,21 @@ description: Registro de una nueva anomalía (bug) siguiendo el estándar Issue-
 
 # Workflow: Registro de Anomalía (/bug-add)
 
-Este flujo implementa el estándar de **Issue-as-Code distribuido v3.0**, donde cada paquete es responsable de su propio historial de calidad, integrándose con la visión global.
+Este flujo implementa el estándar de **Issue-as-Code distribuido v3.0**, donde cada componente es responsable de su propio historial de calidad, integrándose con la visión global.
 
 ## Estructura de Anomalías
 
-- **Bugs Maestros (Críticos/Negocio)**: `docs/plan/tasks/` (Prefijo `B-APX-XXXX`)
-- **Bugs de Paquete**: `<paquete>/docs/backlog/` (Prefijo `B-APX-[PKG]-XXXX`)
+- **Bugs Maestros (Críticos/Negocio)**: `docs/plan/tasks/` (Prefijo `B-[PRJ]-XXXX`)
+- **Bugs de Componente**: `<componente>/docs/backlog/` (Prefijo `B-[PRJ]-[COMP]-XXXX`)
   - *Nota*: Se guardan en `backlog/` para unificar la gestión en el Hub.
 
 ## Workflow
 
 ### 1. Identificación y Nivel
 
-- **B-APX-XXXX**: Bug crítico que afecta a múltiples paquetes o requiere priorización en el Roadmap global. Ubicación: `docs/plan/tasks/`.
-- **B-APX-[PKG]-XXXX**: Bug específico de un componente técnicos. Ubicación: `<paquete>/docs/backlog/`.
-  - `[PKG]` puede ser: `HMI`, `CTX`, `AI`, `LC`.
+- **B-[PRJ]-XXXX**: Bug crítico que afecta a múltiples componentes o requiere priorización en el Roadmap global. Ubicación: `docs/plan/tasks/`.
+- **B-[PRJ]-[COMP]-XXXX**: Bug específico de un componente técnico. Ubicación: `<componente>/docs/backlog/`.
+  - `[COMP]` puede ser: `HMI`, `CTX`, `AI`, `LC`.
 
 ### 2. Creación del Archivo
 
@@ -28,7 +28,7 @@ Este flujo implementa el estándar de **Issue-as-Code distribuido v3.0**, donde 
 
 ```markdown
 ---
-id: B-APX-[PKG]-XXXX
+id: B-[PRJ]-[COMP]-XXXX
 title: "Título descriptivo"
 type: bug
 weight: [integer]
@@ -39,15 +39,15 @@ remaining_effort: [points/hours]
 actual_effort: 0
 created_at: YYYY-MM-DD
 updated_at: YYYY-MM-DD
-references: [RF-XXX, T-APX-YYYY]
-parent_id: [Master ID if Package bug]
+references: [RF-XXX, T-[PRJ]-YYYY]
+parent_id: [Master ID if Componente bug]
 assets: [./assets/[ID]-evidencia.png]
 ---
 ```
 
 ### 3. Gestión de Assets
 
-- Guardar evidencias en la carpeta `assets/` local al paquete o en `docs/plan/tasks/assets/` para maestros.
+- Guardar evidencias en la carpeta `assets/` local al componente o en `docs/plan/tasks/assets/` para maestros.
 - Referenciar relativamente en el markdown.
 
 ### 4. Ciclo de Vida y Pesos
@@ -61,8 +61,8 @@ assets: [./assets/[ID]-evidencia.png]
 
 ### 5. Cierre
 
-- Al cerrar un bug de paquete, se debe actualizar el `remaining_effort` a 0.
-- Si es el último bug de paquete vinculado a un Master, se debe cerrar también el Master.
+- Al cerrar un bug de componente, se debe actualizar el `remaining_effort` a 0.
+- Si es el último bug de componente vinculado a un Master, se debe cerrar también el Master.
 
 ## Estados del Workflow
 

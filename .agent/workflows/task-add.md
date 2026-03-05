@@ -4,36 +4,29 @@ description: Añade una nueva tarea al backlog del producto siguiendo estándare
 
 # Workflow: Añadir Tarea al Backlog (/task-add)
 
-Este flujo permite registrar tareas pendientes en el backlog del producto, siguiendo el estándar **Issue-as-Code distribuido v3.0 (Master/Package)**.
+Este flujo permite registrar tareas pendientes en el backlog del producto, siguiendo el estándar **Issue-as-Code distribuido v3.0 (Master/Componente)**.
 
 ## Estructura del Backlog
+El backlog se organiza de forma descentralizada. Así, para un proyecto dado habrá tareas de proyecto (épicas), que a su vez pueden dividirse en tareas de cada uno de los componentes. Los componentes, a su vez, estarán divididos en
 
-El backlog se organiza de forma descentralizada:
+- **Servicios (Backend)**: Servicios de backend
+- **Apps (HMI)**: aplicaciones / interfaces de usuario
+- **Paquetes (Soporte)**: paquetes de soporte al resto de elementos
 
-- **Tareas Maestras (Globales)**: `docs/plan/tasks/` (Definen el "Qué" / Épicas)
-- **HMI**: `packages/hmi/docs/backlog/`
-- **Contexto**: `packages/context/docs/backlog/`
-- **IA/Orquestador**: `packages/orchestrator/docs/backlog/`
-- **Licencia**: `packages/license/docs/backlog/`
+En el archivo `task_config.yaml` se definen el prefijo del proyecto (`[PRJ]`), el prefijo de cada componente (`[COMP]`) y las rutas de destino correspondientes (tanto globales como de componente).
 
-## Workflow
+## Pasos
 
-### 1. Identificación del Nivel y Paquete
+### 1.  **Clasificación e Identificación de Destino** (Skill: `@task-namer`):
+    *   Determinar si la tarea es de nivel **Master** o de **Componente**. Toda tarea de componente debe tener un `parent_id` apuntando a su Tarea Maestra. Si no existe la maestra, se debe crear una.
+    *   Cargar `task_config.yaml` para resolver el prefijo del proyecto y la ruta de destino.
+    *   Calcular el ID secuencial basándose en los archivos existentes en la ruta resuelta.
+    *   **Resultado**: ID de tarea (ej: `T-[PRJ]-[COMP]-XXXX`) y ruta de archivo.
 
-Determinar si es una tarea de negocio (Master) o técnica (Package):
-- **Master**: Afecta a la visión global o a múltiples paquetes. ID: `T-APX-XXXX`. Ubicación: `docs/plan/tasks/`.
-- **Package**: Tarea técnica específica de un componente. ID: `T-APX-[PKG]-XXXX`. Ubicación: `<paquete>/docs/backlog/`.
-  - `[PKG]` puede ser: `HMI`, `CTX`, `AI`, `LC`.
-
-### 2. Asignación de ID y Peso
-
-- **ID**: Secuencial por nivel/paquete. Verificar el último ID en el directorio correspondiente.
-- **Peso (Weight)**: Valor entero (0 - ∞). 
-  - **Prioridad Crítica**: 0-10 (Urgencias).
-  - **Prioridad Alta**: 10-100 (ASAP).
-  - **Desarrollo**: 100-1000.
-  - **Roadmap**: 1000+.
-  - *Nota*: Tareas de versiones futuras deben tener pesos mayores que las actuales.
+### 2.  **Asignación de Metadatos**:
+    *   Cargar el template correspondiente al nivel de la tarea.
+    *   Asignar **Peso (Weight)** según prioridad (0-10 Crítica, 10-100 Alta, 100-1000 Estándar, 1000+ Mejora Futura).
+    *   Establecer versión objetivo, fechas de creación y estado inicial (`backlog`).
 
 ### 3. Creación del Archivo
 
@@ -43,7 +36,7 @@ Determinar si es una tarea de negocio (Master) o técnica (Package):
 
 ```markdown
 ---
-id: T-APX-XXXX
+id: T-[PRJ]-XXXX
 title: "Título descriptivo"
 type: funcional | despliegue | diseño | tools | infra
 weight: [integer]
@@ -66,17 +59,17 @@ original_ref: [Legacy ID if any]
 - [ ] **CA-M-1:** [Criterio de alto nivel]
 
 ## 🛠 Tareas de Componente
-- [T-APX-PKG-XXXX: Título](../../packages/pkg/docs/backlog/T-APX-PKG-XXXX.md)
+- [T-[PRJ]-[COMP]-XXXX: Título]
 ```
 
-**Formato para Tarea de Paquete (Package):**
+**Formato para Tarea de Componente:**
 
 ```markdown
 ---
-id: T-APX-[PKG]-XXXX
+id: T-[PRJ]-[COMP]-XXXX
 title: "Título técnico"
 type: feature | enhancement | refactor | technical-debt
-parent_id: T-APX-XXXX
+parent_id: T-[PRJ]-XXXX
 weight: [integer]
 version: "v0.2.X"
 status: backlog | planned | in_progress | completed | blocked
@@ -90,7 +83,7 @@ updated_at: YYYY-MM-DD
 # [ID]: [Título]
 
 ## 🔗 Tarea Maestra
-- [T-APX-XXXX: Título Maestros](../../../docs/plan/tasks/T-APX-XXXX.md)
+- [T-[PRJ]-XXXX: Título Maestros](../../../docs/plan/tasks/T-[PRJ]-XXXX.md)
 
 ## 🎯 Objetivo Técnico
 [Descripción técnica del cambio]
@@ -105,15 +98,12 @@ updated_at: YYYY-MM-DD
 [Detalles técnicos, módulos afectados, etc.]
 ```
 
-### 4. Vinculación Master/Package (Obligatoria)
+### 4. Vinculación Master/Componente (Obligatoria)
 
-- **Package -> Master**: Es obligatorio incluir el `parent_id` en el frontmatter y un enlace en la sección `## 🔗 Tarea Maestra`.
-- **Master -> Package**: Es obligatorio listar las tareas técnicas en la sección `## 🛠 Tareas de Componente`.
+- **Componente-> Master**: Es obligatorio incluir el `parent_id` en el frontmatter y un enlace en la sección `## 🔗 Tarea Maestra`.
+- **Master -> Componente**: Es obligatorio listar las tareas técnicas en la sección `## 🛠 Tareas de Componente`.
 - **Automatización**: Se puede usar `python tools/scripts/link_tasks.py` para sincronizar estos enlaces automáticamente.
 
-### 5. Registro en el Hub
-
-No es necesario registrar manualmente en tablas globales. El Hub escaneará los directorios automáticamente y ordenará por `version` y luego por `weight`.
 
 ## Estados del Workflow
 
@@ -128,7 +118,7 @@ Los estados permitidos para el campo `status` son:
 ## Verificación de la Tarea
 
 ### Checklist de Calidad
-- [ ] **ID Correcto**: El ID sigue el patrón `T-APX-[XXXX]` o `T-APX-[PKG]-XXXX` y es el siguiente de la secuencia.
+- [ ] **ID Correcto**: El ID sigue el patrón `T-[PRJ]-[XXXX]` o `T-[PRJ]-[COMP]-XXXX` y es el siguiente de la secuencia.
 - [ ] **Ubicación**: El archivo se ha creado en la ruta correcta según su nivel.
 - [ ] **Metadatos**: El frontmatter tiene `type`, `weight`, `status` y `parent_id` (para tareas de componente).
 - [ ] **Trazabilidad (Bidireccional)**:
