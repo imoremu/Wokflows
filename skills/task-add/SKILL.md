@@ -109,4 +109,3 @@ updated_at: YYYY-MM-DD
 - **Componente-> Master**: Es obligatorio incluir el `parent_id` en el frontmatter y un enlace en la sección `## 🔗 Tarea Maestra`.
 - **Master -> Componente**: Es obligatorio listar las tareas técnicas en la sección `## 🛠 Tareas de Componente`.
 - **Automatización**: Se puede ejecutar un script de sincronización si el repositorio cuenta con uno (ej. `link_tasks.py`).
-

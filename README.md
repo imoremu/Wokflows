@@ -14,6 +14,11 @@ La idea central es que estos archivos actúan como un **sistema operativo de des
 Wokflows/
 ├── workflows/             # Proxies para comandos de Antigravity
 │   ├── task-add-workflow.md
+│   ├── req-analysis-workflow.md
+│   ├── needs-analysis-workflow.md
+│   ├── platform-plan-workflow.md
+│   ├── work-plan-workflow.md
+│   ├── task-list-workflow.md
 │   ├── task-dev-workflow.md
 │   ├── bug-add-workflow.md
 │   ├── bug-fix-workflow.md
@@ -32,7 +37,12 @@ Wokflows/
 │   ├── bug-fix-reviewer/  # Verifica que un fix resuelve el problema raíz
 │   ├── commit-generator/  # Genera mensajes de commit semánticos
 │   ├── dev-flow/          # Orquestador del ciclo BDD → TDD → Dev → QA → Doc
-│   ├── task-add/          # Lógica completa para añadir tarea
+│   ├── task-add/          # Añade tarea al backlog (Issue-as-Code)
+│   ├── req-analysis/      # Análisis de requisitos funcionales
+│   ├── needs-analysis/    # Análisis técnico y NFRs
+│   ├── platform-plan/     # Arquitectura y configuración
+│   ├── work-plan/         # Plan de desarrollo y creación de tareas
+│   ├── task-list/         # Genera backlog técnico en JSON
 │   ├── task-dev/          # Lógica completa para desarrollar tarea
 │   ├── bug-add/           # Lógica completa para registrar anomalía
 │   ├── bug-fix/           # Lógica completa para resolver anomalía
@@ -66,6 +76,30 @@ Registra una nueva tarea en el backlog del producto siguiendo el estándar **Iss
 4. **Vinculación**: Sincronizar enlaces entre Master y Componente.
 
 **IDs:** `T-[PRJ]-XXXX` (Master) · `T-[PRJ]-[COMP]-XXXX` (Componente)
+
+---
+
+### `/req-analysis` — Análisis de Requisitos Funcionales
+
+Identifica ambigüedades, asunciones y conflictos en los requisitos originales para asegurar que son accionables.
+
+---
+
+### `/needs-analysis` — Análisis de Necesidades Técnicas
+
+Cuantifica requisitos no funcionales (NFRs), riesgos de compliance y viabilidad de APIs en fases inicial y de madurez.
+
+---
+
+### `/platform-plan` — Necesidades de Plataforma
+
+Define la arquitectura, stack tecnológico y plan de configuración detallado para la infraestructura.
+
+---
+
+### `/work-plan` — Plan de Trabajo
+
+Genera la estrategia de desarrollo técnico (Software) basada en BDD/TDD y las tecnologías elegidas.
 
 ---
 
@@ -147,7 +181,12 @@ Las skills son especialistas que los proxies de Antigravity o el propio IDE invo
 
 | Skill | Responsabilidad |
 |---|---|
+| `req-analysis` | Análisis de ambigüedades y asunciones funcionales |
+| `needs-analysis` | Cuantificación de NFRs, rendimiento y compliance |
+| `platform-plan` | Definición de arquitectura, stack y plan de infra |
+| `work-plan` | Desarrollo de estrategia y registro automático de tareas |
 | `task-add` | Calcula IDs dinámicos y añade tareas al backlog |
+| `task-list` | Generación de backlog técnico en formato JSON |
 | `task-dev` | Orquesta el ciclo de desarrollo BDD → TDD → Dev → QA → Doc |
 | `bug-add` | Registra anomalías usando la jerarquía de proyecto y componente |
 | `bug-fix` | Verificia logs, corrige bugs y llama a un reviewer riguroso |
@@ -221,7 +260,7 @@ git submodule add https://github.com/<org>/Wokflows.git .agent
 
 ```
 mi-proyecto/
-├── .agent/                    ← submódulo (este repo)
+├── .agents/                    ← submódulo (este repo)
 │   ├── workflows/             ← slash commands (leído por Antigravity)
 │   └── skills/                ← habilidades
 ├── task_config.yaml           ← configuración específica del proyecto
@@ -231,15 +270,15 @@ mi-proyecto/
 
 ### 3. Configuración para Cursor IDE
 
-Cursor detecta de forma nativa las reglas y skills ubicadas en la carpeta `.agents/` o `.agent/`. Solo asegúrate de que el submódulo esté correctamente inicializado como se describe en el paso 1.
+Cursor detecta de forma nativa las reglas y skills ubicadas en la carpeta `.agents/`. Solo asegúrate de que el submódulo esté correctamente inicializado como se describe en el paso 1.
 
 ### 4. Actualizar a la última versión
 
 Para actualizar los workflows en un proyecto consumer:
 
 ```bash
-git submodule update --remote .agent
-git add .agent
+git submodule update --remote .agents
+git add .agents
 git commit -m "chore(agent): update workflows to latest"
 ```
 
