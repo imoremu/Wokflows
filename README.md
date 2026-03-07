@@ -12,18 +12,18 @@ La idea central es que estos archivos actúan como un **sistema operativo de des
 
 ```
 Wokflows/
-├── workflows/             # Procesos orquestados (slash commands /nombre)
-│   ├── task-add.md        # /task-add    → Añadir tarea al backlog
-│   ├── task-dev.md        # /task-dev    → Ciclo completo de desarrollo
-│   ├── bug-add.md         # /bug-add     → Registrar una anomalía (bug)
-│   ├── bug-fix.md         # /bug-fix     → Resolver una anomalía
-│   ├── commit.md          # /commit      → Generar commit semántico
-│   ├── generate-bdd.md    # /generate-bdd → Generar feature file BDD
-│   ├── generate-doc.md    # /generate-doc → Generar documentación técnica
-│   ├── review-code.md     # /review-code  → Revisión de código
-│   ├── review-fix.md      # /review-fix   → Revisión de un bug fix
-│   └── review-test.md     # /review-test  → Revisión de la suite de tests
-├── skills/                # Habilidades especializadas
+├── workflows/             # Proxies para comandos de Antigravity
+│   ├── task-add-workflow.md
+│   ├── task-dev-workflow.md
+│   ├── bug-add-workflow.md
+│   ├── bug-fix-workflow.md
+│   ├── commit-workflow.md
+│   ├── generate-bdd-workflow.md
+│   ├── generate-doc-workflow.md
+│   ├── review-code-workflow.md
+│   ├── review-fix-workflow.md
+│   └── review-test-workflow.md
+├── skills/                # Lógica core y habilidades especializadas
 │   ├── task-namer/        # Calcula ID y ruta de una tarea
 │   ├── doc-generator/     # Genera/actualiza documentación técnica
 │   ├── bdd-generator/     # Crea feature files Gherkin en español
@@ -31,7 +31,17 @@ Wokflows/
 │   ├── test-reviewer/     # Audita calidad de la suite de tests
 │   ├── bug-fix-reviewer/  # Verifica que un fix resuelve el problema raíz
 │   ├── commit-generator/  # Genera mensajes de commit semánticos
-│   └── dev-flow/          # Orquestador del ciclo BDD → TDD → Dev → QA → Doc
+│   ├── dev-flow/          # Orquestador del ciclo BDD → TDD → Dev → QA → Doc
+│   ├── task-add/          # Lógica completa para añadir tarea
+│   ├── task-dev/          # Lógica completa para desarrollar tarea
+│   ├── bug-add/           # Lógica completa para registrar anomalía
+│   ├── bug-fix/           # Lógica completa para resolver anomalía
+│   ├── commit/            # Lógica completa para generar commit semántico
+│   ├── generate-bdd/      # Lógica completa para generar feature BDD
+│   ├── generate-doc/      # Lógica completa para generar documentación
+│   ├── review-code/       # Lógica completa para revisión de código
+│   ├── review-fix/        # Lógica completa para revisión de fix
+│   └── review-test/       # Lógica completa para revisión de tests
 └── README.md
 ```
 
@@ -39,7 +49,7 @@ Wokflows/
 
 ## 🔄 Workflows
 
-El nombre del archivo determina el slash command. Por ejemplo, `task-add.md` se invoca como `/task-add`.
+El nombre del proxy (sin el sufijo `-workflow`) determina el slash command en Antigravity. Por ejemplo, `task-add-workflow.md` se invoca como `/task-add`. En Cursor, las skills son leídas automáticamente de la carpeta `.agents/skills` o `.cursor/rules`.
 
 ### `/task-add` — Añadir Tarea al Backlog
 
@@ -133,18 +143,20 @@ Audita la suite completa con `test-reviewer`: cobertura BDD (features huérfanas
 
 ## 🧠 Skills
 
-Las skills son especialistas que los workflows invocan para tareas concretas. No se usan directamente como slash commands.
+Las skills son especialistas que los proxies de Antigravity o el propio IDE invocan para tareas concretas. No se usan directamente como slash commands.
 
 | Skill | Responsabilidad |
 |---|---|
-| `task-namer` | Calcula ID secuencial y ruta desde `task_config.yaml` |
-| `doc-generator` | Crea/actualiza `docs/architecture/design_*.md` con diagramas Mermaid |
-| `bdd-generator` | Produce feature files Gherkin en español con tags y trazabilidad RF |
-| `code-reviewer` | Auditoría de código multi-categoría con puntuación 1–10 |
-| `test-reviewer` | Auditoría de BDD, unit e integration tests con detección de orfandad |
-| `bug-fix-reviewer` | Valida que un fix es completo y sin regresiones |
-| `commit-generator` | Genera mensajes semánticos con prefijo `type(scope): ID - subject` |
-| `dev-flow` | Orquestador Red → Green → QA → Doc → Commit |
+| `task-add` | Calcula IDs dinámicos y añade tareas al backlog |
+| `task-dev` | Orquesta el ciclo de desarrollo BDD → TDD → Dev → QA → Doc |
+| `bug-add` | Registra anomalías usando la jerarquía de proyecto y componente |
+| `bug-fix` | Verificia logs, corrige bugs y llama a un reviewer riguroso |
+| `commit` | Genera mensajes semánticos de commit con trazabilidad |
+| `generate-bdd` | Produce feature files Gherkin estandarizados en español |
+| `generate-doc` | Actualiza o crea `docs/architecture/design_*.md` con diagramas |
+| `review-code` | Auditoría de código multicriteroia (Seguridad, Mantenibilidad, etc) |
+| `review-fix` | Auditoría específica para evitar regresiones tras un bug fix |
+| `review-test` | Detecta features huérfanas, calidad de mocks y aislamiento unitario |
 
 ---
 
@@ -219,15 +231,17 @@ mi-proyecto/
 
 ### 3. Configuración para Cursor IDE (Opcional)
 
-Si usas Cursor IDE, este busca los comandos en `.cursor/commands/`. Puedes crear un enlace para que use los mismos workflows del agente:
+Si usas Cursor IDE, este busca de forma nativa las reglas/skills en `.cursor/rules/`. Solo necesitas enlazar la carpeta skills del agente:
 
 ```bash
 # Windows (PowerShell):
-New-Item -ItemType Junction -Path ".cursor\commands" -Target ".agent\workflows"
+New-Item -ItemType Junction -Path ".cursor\rules" -Target ".agent\skills"
 
 # Unix / Mac:
-ln -s ../.agent/workflows .cursor/commands
+ln -s ../.agent/skills .cursor/rules
 ```
+
+Cursor leerá automáticamente estas carpetas de skills e instanciará los comandos (ej. `/task-add`) en el chat nativamente.
 
 ### 4. Actualizar a la última versión
 
