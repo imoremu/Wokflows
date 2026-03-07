@@ -229,19 +229,9 @@ mi-proyecto/
 └── docs/
 ```
 
-### 3. Configuración para Cursor IDE (Opcional)
+### 3. Configuración para Cursor IDE
 
-Si usas Cursor IDE, este busca de forma nativa las reglas/skills en `.cursor/rules/`. Solo necesitas enlazar la carpeta skills del agente:
-
-```bash
-# Windows (PowerShell):
-New-Item -ItemType Junction -Path ".cursor\rules" -Target ".agent\skills"
-
-# Unix / Mac:
-ln -s ../.agent/skills .cursor/rules
-```
-
-Cursor leerá automáticamente estas carpetas de skills e instanciará los comandos (ej. `/task-add`) en el chat nativamente.
+Cursor detecta de forma nativa las reglas y skills ubicadas en la carpeta `.agents/` o `.agent/`. Solo asegúrate de que el submódulo esté correctamente inicializado como se describe en el paso 1.
 
 ### 4. Actualizar a la última versión
 
