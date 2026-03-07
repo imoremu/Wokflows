@@ -2,23 +2,30 @@
 description: Registro de una nueva anomalía (bug) siguiendo el estándar Issue-as-Code (Distribuido)
 ---
 
-# Workflow: Registro de Anomalía (/bug-add)
+# Skill: Registro de Anomalía (/bug-add)
 
 Este flujo implementa el estándar de **Issue-as-Code distribuido v3.0**, donde cada componente es responsable de su propio historial de calidad, integrándose con la visión global.
 
 ## Estructura de Anomalías
+El backlog de anomalías se organiza de forma descentralizada. Así, para un proyecto dado habrá bugs maestros (críticos/negocio), que a su vez pueden relacionarse con bugs de cada uno de los componentes. Los componentes, a su vez, estarán divididos en:
 
-- **Bugs Maestros (Críticos/Negocio)**: `docs/plan/tasks/` (Prefijo `B-[PRJ]-XXXX`)
-- **Bugs de Componente**: `<componente>/docs/backlog/` (Prefijo `B-[PRJ]-[COMP]-XXXX`)
-  - *Nota*: Se guardan en `backlog/` para unificar la gestión en el Hub.
+- **Servicios (Backend)**: Servicios de backend
+- **Apps (HMI)**: aplicaciones / interfaces de usuario
+- **Paquetes (Soporte)**: paquetes de soporte al resto de elementos
 
-## Workflow
+En el archivo `task_config.yaml` se definen el prefijo del proyecto (`[PRJ]`), el prefijo de cada componente (`[COMP]`) y las rutas de destino correspondientes (tanto globales como de componente).
 
-### 1. Identificación y Nivel
+## Pasos de la Skill
 
-- **B-[PRJ]-XXXX**: Bug crítico que afecta a múltiples componentes o requiere priorización en el Roadmap global. Ubicación: `docs/plan/tasks/`.
-- **B-[PRJ]-[COMP]-XXXX**: Bug específico de un componente técnico. Ubicación: `<componente>/docs/backlog/`.
-  - `[COMP]` puede ser: `HMI`, `CTX`, `AI`, `LC`.
+### 1. Clasificación e Identificación de Destino (Namer)
+
+- Determinar si el bug es de nivel **Master** o de **Componente**. Existirá bug maestro si el bug afecta a producción (no en fase de desarrollo) o si el el bug afecta a más de un componente. En caso contrario, será exclusivamente un bug de componente.
+
+Nota: En caso de ser un bug de producción, el id informado a clientes y usuarios será el id del bug maestro.
+
+- Cargar `task_config.yaml` de la raíz del proyecto para resolver el prefijo del proyecto y la ruta de destino.
+- Calcular el ID secuencial basándose en los archivos existentes en la ruta resuelta.
+- **Resultado**: Nuevo ID de bug (ej: `B-[PRJ]-XXXX` o `B-[PRJ]-[COMP]-XXXX`) y ruta de archivo final.
 
 ### 2. Creación del Archivo
 

@@ -1,8 +1,8 @@
 ---
-description: Ciclo completo para la resolución de anomalías (bugs) detectedas.
+description: Ciclo completo para la resolución de anomalías (bugs) detectadas.
 ---
 
-# Bug Fix Workflow (Resolución de Anomalías)
+# Skill: Resolución de Anomalías (/bug-fix)
 
 Este flujo orquesta la resolución de bugs, soportando la jerarquía **Master/Componente v3.0**.
 
@@ -15,7 +15,7 @@ Este flujo orquesta la resolución de bugs, soportando la jerarquía **Master/Co
     - Entrada: `B-[PRJ]-[COMP]-XXXX`
     - Foco exclusivo en la corrección técnica de un componente.
 
-## Workflow
+## Pasos de la Skill
 
 ### 1. Reproducción y Esfuerzo
 
@@ -31,14 +31,14 @@ Este flujo orquesta la resolución de bugs, soportando la jerarquía **Master/Co
 
 ### 3. Fase de Verificación (QA)
 
-- Ejecutar `/review-fix` usando el skill `bug-fix-reviewer`.
+- Ejecutar el proceso de revisión de corrección (`review-fix` logic) usando el skill `bug-fix-reviewer`.
 - Validar que no hay regresiones.
 
 ### 4. Cierre y Documentación
 
-- Ejecutar `/finish-bug` para documentar la solución y actualizar métricas de esfuerzo.
+- Documentar la solución y actualizar métricas de esfuerzo en el archivo de backlog.
 - Si es **Master Fix**, verificar si otros componentes requieren correcciones para el mismo problema.
 
 ### 5. Persistencia
 
-- Ejecutar `/commit` para guardar la corrección con el prefijo `fix([ID])`.
+- Realizar los cambios y preparar para hacer commit con el prefijo `fix([ID])` (puedes apoyarte en la skill `commit`).
