@@ -41,8 +41,9 @@ type: bug
 weight: [integer]
 version: "vX.Y"
 status: open | in_progress | completed | blocked
-estimated_effort: [points/hours]
-remaining_effort: [points/hours]
+effort_unit: h
+estimated_effort: 0
+remaining_effort: 0
 actual_effort: 0
 created_at: YYYY-MM-DD
 updated_at: YYYY-MM-DD

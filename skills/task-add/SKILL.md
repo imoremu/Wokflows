@@ -50,6 +50,7 @@ type: funcional | despliegue | diseño | tools | infra
 weight: [integer]
 version: "v0.2.X"
 status: backlog | planned | in_progress | completed | blocked
+effort_unit: h
 estimated_effort: 0
 remaining_effort: 0
 actual_effort: 0
@@ -80,6 +81,7 @@ parent_id: T-[PRJ]-XXXX
 weight: [integer]
 version: "v0.2.X"
 status: backlog | planned | in_progress | completed | blocked
+effort_unit: h
 estimated_effort: 0
 remaining_effort: 0
 actual_effort: 0
