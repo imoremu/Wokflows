@@ -66,8 +66,8 @@ El nombre del proxy (sin el sufijo `-workflow`) determina el slash command en An
 Registra una nueva tarea en el backlog del producto siguiendo el estándar **Issue-as-Code distribuido v3.0 (Master/Componente)**.
 
 **Niveles:**
-- **Master**: Tarea de negocio/épica. ID: `T-[PRJ]-XXXX`. Ubicación: `docs/plan/tasks/`.
-- **Componente**: Tarea técnica de componente. ID: `T-[PRJ]-[COMP]-XXXX`. Ubicación: `<componente>/docs/backlog/`.
+- **Master**: Tarea de negocio/épica. ID: `T-[PRJ]-XXXX`. Urbicación: `docs/plan/tasks/` (calculado con `path` + `folders.tasks`).
+- **Componente**: Tarea técnica de componente. ID: `T-[PRJ]-[COMP]-XXXX`. Ubicación: `<comp>/docs/backlog/tasks/` (calculado con `path` + `folders.tasks`).
 
 **Pasos:**
 1. **Identificación**: Determinar nivel y componente (HMI, CTX, AI, LC).
@@ -120,8 +120,8 @@ Orquesta el ciclo completo **BDD → TDD → Dev → QA → Doc → Commit** par
 Crea el archivo de seguimiento de un bug siguiendo el estándar Issue-as-Code distribuido.
 
 **Niveles:**
-- `B-[PRJ]-XXXX` → Bug maestro (multi-paquete), en `docs/plan/tasks/`
-- `B-[PRJ]-[COMP]-XXXX` → Bug de componente, en `<componente>/docs/backlog/`
+- `B-[PRJ]-XXXX` → Bug maestro (multi-paquete), en `docs/plan/bugs/`
+- `B-[PRJ]-[COMP]-XXXX` → Bug de componente, en `<comp>/docs/backlog/bugs/`
 
 **Pesos:** 0–10 Crítico · 10–100 Prioritario · 100–1000 Desarrollo · 1000+ Mejora futura
 
@@ -203,7 +203,7 @@ Las skills son especialistas que los proxies de Antigravity o el propio IDE invo
 
 ### Issue-as-Code Distribuido v3.0
 
-Cada componente (servicio, app, paquete) es dueño de su propio backlog. Las tareas maestras en `docs/plan/tasks/` dan visibilidad global; las de componente viven junto al código.
+Cada componente (servicio, app, paquete) es dueño de su propio backlog. Las tareas maestras en `docs/plan/` dan visibilidad global; las de componente viven junto al código. Ambas separan tareas (`tasks/`) y anomalías (`bugs/`) según la configuración.
 
 ### Estructura de IDs
 
@@ -294,17 +294,29 @@ project:
 levels:
   master:
     id_prefix: ""
-    path: docs/plan/tasks/
+    path: docs/plan/
+    folders:
+      tasks: tasks/
+      bugs: bugs/
   components:
     - type: service
       id_prefix: SRV
       path: services/{name}/docs/backlog/
+      folders:
+        tasks: tasks/
+        bugs: bugs/
     - type: app
       id_prefix: HMI
       path: app/{name}/docs/backlog/
+      folders:
+        tasks: tasks/
+        bugs: bugs/
     - type: package
       id_prefix: PKG
       path: packages/{name}/docs/backlog/
+      folders:
+        tasks: tasks/
+        bugs: bugs/
 ```
 
 > **Nota:** `task_config.yaml` es propio de cada proyecto y no forma parte de este repositorio.

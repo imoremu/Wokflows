@@ -13,7 +13,7 @@ El backlog de anomalías se organiza de forma descentralizada. Así, para un pro
 - **Apps (HMI)**: aplicaciones / interfaces de usuario
 - **Paquetes (Soporte)**: paquetes de soporte al resto de elementos
 
-En el archivo `task_config.yaml` se definen el prefijo del proyecto (`[PRJ]`), el prefijo de cada componente (`[COMP]`) y las rutas de destino correspondientes (tanto globales como de componente).
+En el archivo `task_config.yaml` se definen el prefijo del proyecto (`[PRJ]`), el prefijo de cada componente (`[COMP]`), las rutas base (`path`) y las subcarpetas de destino (`folders.tasks` y `folders.bugs`).
 
 ## Pasos de la Skill
 
@@ -23,8 +23,8 @@ En el archivo `task_config.yaml` se definen el prefijo del proyecto (`[PRJ]`), e
 
 Nota: En caso de ser un bug de producción, el id informado a clientes y usuarios será el id del bug maestro.
 
-- Cargar `task_config.yaml` de la raíz del proyecto para resolver el prefijo del proyecto y la ruta de destino.
-- Calcular el ID secuencial basándose en los archivos existentes en la ruta resuelta.
+- Cargar `task_config.yaml` de la raíz del proyecto para resolver el prefijo del proyecto, la ruta base y la subcarpeta `folders.bugs`.
+- Calcular el ID secuencial basándose en los archivos existentes en la ruta final resuelta (`path` + `folders.bugs`).
 - **Resultado**: Nuevo ID de bug (ej: `B-[PRJ]-XXXX` o `B-[PRJ]-[COMP]-XXXX`) y ruta de archivo final.
 
 ### 2. Creación del Archivo
@@ -55,7 +55,7 @@ assets: [./assets/[ID]-evidencia.png]
 
 ### 3. Gestión de Assets
 
-- Guardar evidencias en la carpeta `assets/` local al componente o en `docs/plan/tasks/assets/` para maestros.
+- Guardar evidencias en la carpeta `assets/` local al componente o en la subcarpeta `assets/` dentro de la ruta de bugs de maestros.
 - Referenciar relativamente en el markdown.
 
 ### 4. Ciclo de Vida y Pesos

@@ -13,7 +13,7 @@ El backlog se organiza de forma descentralizada. Así, para un proyecto dado hab
 - **Apps (HMI)**: aplicaciones / interfaces de usuario
 - **Paquetes (Soporte)**: paquetes de soporte al resto de elementos
 
-En el archivo `task_config.yaml` se definen el prefijo del proyecto (`[PRJ]`), el prefijo de cada componente (`[COMP]`) y las rutas de destino correspondientes (tanto globales como de componente).
+En el archivo `task_config.yaml` se definen el prefijo del proyecto (`[PRJ]`), el prefijo de cada componente (`[COMP]`), las rutas base (`path`) y las subcarpetas de destino (`folders.tasks` y `folders.bugs`).
 
 ## Pasos de la Skill
 
@@ -21,11 +21,11 @@ En el archivo `task_config.yaml` se definen el prefijo del proyecto (`[PRJ]`), e
 - **Determinar el Escenario**:
    - Si la tarea es **Master**:
      - Cargar `task_config.yaml` y usar `levels.master.id_prefix`.
-     - Ruta destino: `levels.master.path` (ej. `docs/plan/tasks/`).
+     - Ruta destino: `levels.master.path` + `levels.master.folders.tasks` (ej. `docs/plan/tasks/`).
    - Si la tarea es de **Componente**:
      - Identificar el tipo (app, service, package) en `task_config.yaml` (`levels.components`).
      - Asegurar que la tarea tiene `parent_id` apuntando a su Master correspondiente si aplica.
-     - Usar el `id_prefix` del componente y su `path`. Si la ruta contiene `{name}`, usar el nombre específico del servicio/paquete proporcionado por el usuario.
+     - Usar el `id_prefix` del componente, su `path` y su `folders.tasks`. Si la ruta contiene `{name}`, usar el nombre específico del servicio/paquete proporcionado por el usuario.
 - **Cálculo de ID Secuencial**:
    - Listar los archivos en el directorio de destino resuelto.
    - Buscar el ID más alto existente (`T-PRE-COMP-XXXX`).
