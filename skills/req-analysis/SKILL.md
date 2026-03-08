@@ -22,7 +22,7 @@ Toda asunción debe ser documentada en el informe indicando el motivo de la asun
 Revisa el archivo adjunto con los requisitos del proyecto.
 
 ### SALIDA ESPERADA:
-Un informe completo en formato Markdown en el mismo directorio del fichero de requisito y llamado 'req_analysis.md'. 
+Un informe completo en formato Markdown en el mismo directorio del fichero de requisito y llamado `req_analysis.md`. 
 El informe debe empezar con una línea que indique el estado, ya sea '**Estado:** REQUIERE_ACLARACION' o '**Estado:** ASUNCIONES_REALIZADAS'.
 A continuación, debe desarrollar el reporte con secciones claras para las preguntas o las asunciones tomadas.
 
