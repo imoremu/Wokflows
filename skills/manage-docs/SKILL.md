@@ -14,8 +14,9 @@ Esta skill orquesta la actualización de los documentos del proyecto definidos e
 ## Pasos de la Skill
 
 ### 1. Carga de Configuración
-- Leer `docs_config.yaml` para identificar los documentos a mantener.
-- Cada entrada contiene: `nombre`, `path`, `tipo` (por defecto `md`) y `descripcion`.
+- Intentar leer `docs_config.yaml` para identificar los documentos a mantener.
+- **Project Fallback**: Si el archivo no existe (como en este repositorio), el documento por defecto a mantener es `README.md`.
+- Cada entrada en el YAML contiene: `nombre`, `path`, `tipo` (por defecto `md`) y `descripcion`.
 
 ### 2. Análisis de Impacto
 - Evaluar los cambios realizados en el código o las tareas (`task-dev` o `bug-fix`).

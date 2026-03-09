@@ -24,7 +24,7 @@ Wokflows/
 │   ├── bug-fix-workflow.md
 │   ├── commit-workflow.md
 │   ├── generate-bdd-workflow.md
-│   ├── generate-doc-workflow.md
+│   ├── manage-docs-workflow.md
 │   ├── review-code-workflow.md
 │   ├── review-fix-workflow.md
 │   └── review-test-workflow.md
@@ -48,7 +48,7 @@ Wokflows/
 │   ├── bug-fix/           # Lógica completa para resolver anomalía
 │   ├── commit/            # Lógica completa para generar commit semántico
 │   ├── generate-bdd/      # Lógica completa para generar feature BDD
-│   ├── generate-doc/      # Lógica completa para generar documentación
+│   ├── manage-docs/       # Gestión inteligente de documentación según docs_config.yaml
 │   ├── review-code/       # Lógica completa para revisión de código
 │   ├── review-fix/        # Lógica completa para revisión de fix
 │   └── review-test/       # Lógica completa para revisión de tests
@@ -111,7 +111,7 @@ Orquesta el ciclo completo **BDD → TDD → Dev → QA → Doc → Commit** par
 - **Master Mode** (`T-[PRJ]-XXXX`): Ejecuta secuencialmente todas las tareas de componente hijas.
 - **Component Mode** (`T-[PRJ]-[COMP]-XXXX`): Foco exclusivo en un componente técnico.
 
-**Comandos relacionados:** `/review-test` · `/review-code` · `/generate-doc` · `/commit`
+**Comandos relacionados:** `/review-test` · `/review-code` · `/manage-docs` · `/commit`
 
 ---
 
@@ -151,9 +151,9 @@ Crea un archivo `.feature` en Gherkin siguiendo la regla **Keywords en español 
 
 ---
 
-### `/generate-doc` — Generar Documentación Técnica
+### `/manage-docs` — Gestión de Documentación del Proyecto
 
-Actualiza o crea documentación de arquitectura en `docs/architecture/` usando `doc-generator`. Incluye diagramas Mermaid y compliance de seguridad.
+Actualiza la documentación del proyecto basándose en los cambios técnicos y la configuración definida en `docs_config.yaml`. Sigue principios de minimalismo y utilidad.
 
 ---
 
@@ -192,7 +192,7 @@ Las skills son especialistas que los proxies de Antigravity o el propio IDE invo
 | `bug-fix` | Verificia logs, corrige bugs y llama a un reviewer riguroso |
 | `commit` | Genera mensajes semánticos de commit con trazabilidad |
 | `generate-bdd` | Produce feature files Gherkin estandarizados en español |
-| `generate-doc` | Actualiza o crea `docs/architecture/design_*.md` con diagramas |
+| `manage-docs` | Gestión inteligente y minimalista de documentación |
 | `review-code` | Auditoría de código multicriteroia (Seguridad, Mantenibilidad, etc) |
 | `review-fix` | Auditoría específica para evitar regresiones tras un bug fix |
 | `review-test` | Detecta features huérfanas, calidad de mocks y aislamiento unitario |
@@ -238,7 +238,7 @@ Keywords y contenido **siempre en español**.
               ↓
 🔵 QA Phase    → /review-code (mínimo 8/10)
               ↓
-📄 Sync Phase  → /generate-doc (si hay cambios de diseño)
+📄 Sync Phase  → /manage-docs (según docs_config.yaml)
               ↓
 ✅ Final Phase → /commit
 ```

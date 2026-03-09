@@ -1,9 +1,0 @@
-documents:
-  - nombre: Arquitectura
-    path: docs/architecture/
-    tipo: md
-    descripcion: Diseño técnico macro y decisiones de arquitectura.
-  - nombre: Manual de Usuario
-    path: docs/user_manual/
-    tipo: md
-    descripcion: Guía para el usuario final sobre las funcionalidades del sistema.
