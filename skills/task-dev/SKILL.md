@@ -35,6 +35,7 @@ Para cada componente afectado (secuencialmente en Master Mode, o el único en Co
 - Crear tests unitarios en `<componente>/tests/unit/` que cubran el cambio.
 - **Validación**: Ejecutar la revisión de tests (`/review-test`). Puntuación mínima de 8/10. NO se inicia la implementación sin tests validados.
 - Confirmar que los tests fallan inicialmente (Estado Rojo).
+- **Human in the loop**: Solicitar confirmación del usuario antes de continuar.
 
 #### 3.2 Fase de Desarrollo (Green Phase)
 - Implementar la lógica necesaria siguiendo estándares (Docstrings obligatorios, limpieza).
@@ -44,10 +45,11 @@ Para cada componente afectado (secuencialmente en Master Mode, o el único en Co
 - Ejecutar la suite de pruebas completa para descartar regresiones.
 - Ejecutar la revisión de código exhaustiva (`/review-code`). 
 - **Criterio**: Puntuación mínima de 8/10 en inspecciones de seguridad y testeabilidad.
+- **Human in the loop**: Solicitar confirmación del usuario antes de continuar.
 
 #### 3.4 Sincronización de Diseño (Sync Phase)
 - Revisar si el código altera el diseño técnico macro.
-- Generar o actualizar documentos de arquitectura (`docs/architecture/`) usando las guías de `/generate-doc`, prestando atención a requerimientos de seguridad y diagramas Mermaid.
+- Generar o actualizar los documentos definidos en `docs_config.yaml` usando la skill `/manage-docs`, asegurando un enfoque minimalista y útil.
 
 ### 4. Actualización de Métricas y Esfuerzo
 **Al completar una sesión o el total de un componente:**
