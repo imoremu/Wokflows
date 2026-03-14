@@ -13,21 +13,21 @@ La idea central es que estos archivos actúan como un **sistema operativo de des
 ```
 Wokflows/
 ├── workflows/             # Proxies para comandos de Antigravity
-│   ├── task-add-workflow.md
-│   ├── req-analysis-workflow.md
-│   ├── needs-analysis-workflow.md
-│   ├── platform-plan-workflow.md
-│   ├── work-plan-workflow.md
-│   ├── task-list-workflow.md
-│   ├── task-dev-workflow.md
-│   ├── bug-add-workflow.md
-│   ├── bug-fix-workflow.md
-│   ├── commit-workflow.md
-│   ├── generate-bdd-workflow.md
-│   ├── manage-docs-workflow.md
-│   ├── review-code-workflow.md
-│   ├── review-fix-workflow.md
-│   └── review-test-workflow.md
+│   ├── task-add.md
+│   ├── req-analysis.md
+│   ├── needs-analysis.md
+│   ├── platform-plan.md
+│   ├── work-plan.md
+│   ├── task-list.md
+│   ├── task-dev.md
+│   ├── bug-add.md
+│   ├── bug-fix.md
+│   ├── commit.md
+│   ├── generate-bdd.md
+│   ├── manage-docs.md
+│   ├── review-code.md
+│   ├── review-fix.md
+│   └── review-test.md
 ├── skills/                # Lógica core y habilidades especializadas
 │   ├── task-namer/        # Calcula ID y ruta de una tarea
 │   ├── doc-generator/     # Genera/actualiza documentación técnica
@@ -59,7 +59,7 @@ Wokflows/
 
 ## 🔄 Workflows
 
-El nombre del proxy (sin el sufijo `-workflow`) determina el slash command en Antigravity. Por ejemplo, `task-add-workflow.md` se invoca como `/task-add`. En Cursor, las skills son leídas automáticamente de la carpeta `.agents/skills` o `.cursor/rules`.
+El nombre del proxy determina el slash command en Antigravity. Por ejemplo, `task-add.md` se invoca como `/task-add`. En Cursor, las skills son leídas automáticamente de la carpeta `.agents/skills` o `.cursor/rules`.
 
 ### `/task-add` — Añadir Tarea al Backlog
 
