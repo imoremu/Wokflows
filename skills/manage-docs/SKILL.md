@@ -29,5 +29,18 @@ Para cada documento afectado:
 - Priorizar diagramas Mermaid si ayudan a simplificar la explicación.
 - **Validación**: Asegurar que no se degrada la legibilidad ni se pierde el contexto general.
 
-### 4. Sincronización
+### 4. Gestión del CHANGELOG (WDSV)
+- Si el documento `CHANGELOG.md` existe o está configurado, actualizarlo analizando los commits recientes.
+- **Agrupación**: Utilizar los tipos de commit (`feat`, `fix`, `docs`, etc.) y sus scopes.
+- **Trazabilidad**: Incluir los IDs de tarea/bug (`T-XXX`, `B-XXX`) vinculados a los cambios.
+- **Detección de Versión**: Si se detecta un cierre de Tarea Maestra, proponer un incremento de versión **MINOR**. Si es un Bug fix, incremento de **PATCH**.
+- **Generación**: Usar el formato:
+  ```markdown
+  ## [vX.Y.Z] - YYYY-MM-DD
+  ### Added / Changed / Fixed
+  - [ID] - Descripción resumida (Scope)
+  ```
+
+### 5. Sincronización
 - Confirmar que los cambios en la documentación reflejan fielmente la implementación técnica actual.
+- Validar que la propuesta de versión en el CHANGELOG es coherente con los cambios realizados.

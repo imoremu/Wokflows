@@ -27,7 +27,8 @@ Wokflows/
 │   ├── manage-docs.md
 │   ├── review-code.md
 │   ├── review-fix.md
-│   └── review-test.md
+│   ├── review-test.md
+│   └── release.md
 ├── skills/                # Lógica core y habilidades especializadas
 │   ├── task-namer/        # Calcula ID y ruta de una tarea
 │   ├── doc-generator/     # Genera/actualiza documentación técnica
@@ -151,9 +152,9 @@ Crea un archivo `.feature` en Gherkin siguiendo la regla **Keywords en español 
 
 ---
 
-### `/manage-docs` — Gestión de Documentación del Proyecto
+### `/manage-docs` — Gestión de Documentación y CHANGELOG
 
-Actualiza la documentación del proyecto basándose en los cambios técnicos y la configuración definida en `docs_config.yaml`. Sigue principios de minimalismo y utilidad.
+Actualiza la documentación del proyecto basándose en los cambios técnicos y la configuración definida en `docs_config.yaml`. Implementa la política **WDSV (Workflow-Driven Semantic Versioning)**, actualizando automáticamente el `CHANGELOG.md` y proponiendo bumps de versión basados en tareas finalizadas.
 
 ---
 
@@ -172,6 +173,12 @@ Usa `bug-fix-reviewer` para verificar que el fix resuelve el problema de raíz s
 ### `/review-test` — Revisión de Tests
 
 Audita la suite completa con `test-reviewer`: cobertura BDD (features huérfanas), aislamiento en unit tests y flujo real en integración. **Puntuación mínima 8/10**.
+
+---
+
+### `/release` — Gestión de Lanzamientos
+
+Formaliza el cierre de una versión, actualiza metadatos, crea etiquetas de Git y sincroniza las tareas de release en el backlog.
 
 ---
 
@@ -196,6 +203,7 @@ Las skills son especialistas que los proxies de Antigravity o el propio IDE invo
 | `review-code` | Auditoría de código multicriteroia (Seguridad, Mantenibilidad, etc) |
 | `review-fix` | Auditoría específica para evitar regresiones tras un bug fix |
 | `review-test` | Detecta features huérfanas, calidad de mocks y aislamiento unitario |
+| `release` | Gestión de versiones, bumping y tagging en Git |
 
 ---
 
@@ -229,6 +237,17 @@ Característica: Título en español
 
 Keywords y contenido **siempre en español**.
 
+### Política de Versionado WDSV (Workflow-Driven)
+
+Basada en Semantic Versioning 2.0.0, donde la versión técnica es el resultado del cierre de objetivos:
+- **MAJOR**: Grandes hitos de proyecto o versiones finales entregables.
+- **MINOR**: Nueva funcionalidad completa (cierre de un paquete de Tareas Maestras).
+- **PATCH**: Correcciones de errores o retoques de estabilidad.
+
+**Gestión de Flujo:**
+1. **Intención**: Se usa el campo `version` en las tareas para agrupar el trabajo futuro. Permite subir código a `main` continuamente sin burocracia.
+2. **Cierre**: El comando `/release` oficializa la versión creando el **Git Tag** y el `CHANGELOG.md` acumulado solo cuando el conjunto de tareas está listo.
+
 ### Flujo de Desarrollo Estándar (dev-flow)
 
 ```
@@ -247,13 +266,13 @@ Keywords y contenido **siempre en español**.
 
 ## 🔗 Integración en proyectos consumer
 
-Este repositorio está diseñado para vivir dentro de otros proyectos como un **submódulo Git** en la carpeta `.agent/`.
+Este repositorio está diseñado para vivir dentro de otros proyectos como un **submódulo Git** en la carpeta `.agents/`.
 
 ### 1. Añadir el submódulo
 
 ```bash
 # Desde la raíz del proyecto consumer:
-git submodule add https://github.com/<org>/Wokflows.git .agent
+git submodule add https://github.com/imoremu/Wokflows.git .agents
 ```
 
 ### 2. Estructura resultante en el proyecto consumer

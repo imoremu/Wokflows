@@ -36,7 +36,7 @@ En el archivo `task_config.yaml` se definen el prefijo del proyecto (`[PRJ]`), e
 
 ### 2. Asignación de Metadatos
 - Asignar **Peso (Weight)** según prioridad (0-10 Crítica, 10-100 Alta, 100-1000 Estándar, 1000+ Mejora Futura).
-- Establecer versión objetivo, fechas de creación (`created_at`) y estado inicial (`status: backlog`).
+- Establecer versión objetivo (`version`), fechas de creación (`created_at`) y estado inicial (`status: backlog`).
 
 ### 3. Creación del Archivo
 **Nombre:** `[ID]-descripcion-corta.md`
@@ -48,7 +48,7 @@ id: T-[PRJ]-XXXX
 title: "Título descriptivo"
 type: funcional | despliegue | diseño | tools | infra
 weight: [integer]
-version: "v0.2.X"
+version: "v0.5.0"
 status: backlog | planned | in_progress | completed | blocked
 effort_unit: h
 estimated_effort: 0
@@ -79,7 +79,7 @@ title: "Título técnico"
 type: feature | enhancement | refactor | technical-debt
 parent_id: T-[PRJ]-XXXX
 weight: [integer]
-version: "v0.2.X"
+version: "v0.5.0"
 status: backlog | planned | in_progress | completed | blocked
 effort_unit: h
 estimated_effort: 0
