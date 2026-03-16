@@ -1,8 +1,8 @@
 ---
-description: Proxy para el workflow /release-workflow
+description: Proxy para el workflow /release
 ---
 
-# /release-workflow
+# /release
 
 Has sido invocado para gestionar el lanzamiento de una nueva versión del proyecto. Tu **único objetivo** es leer y ejecutar estrictamente los pasos definidos en la skill correspondiente:
 

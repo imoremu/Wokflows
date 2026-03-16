@@ -2,7 +2,7 @@
 description: Generador de mensajes de commit estándar
 ---
 
-# /commit-message-generate-workflow
+# /commit-message-generate
 
 Has sido invocado para generar una propuesta de mensaje de commit analizando los cambios actuales.
 
