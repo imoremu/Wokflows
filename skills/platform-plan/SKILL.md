@@ -2,7 +2,7 @@
 description: Definir la infraestructura, tecnologías y estrategia de escalado/lock-in.
 ---
 
-# Skill: Necesidades de Plataforma (/platform-plan)
+# Skill: Necesidades de Plataforma (/platform-plan-workflow)
 
 **Objetivo:** Definir la infraestructura, tecnologías y estrategia de escalado/lock-in.
 
@@ -30,3 +30,4 @@ Informe en un fichero Markdown de nombre `platform_plan.md`, en el mismo directo
 2. Decisión de arquitectura (Stack tecnológico).
 3. Recursos necesarios (BBDD, Servidores, etc.).
 4. Plan de configuración paso a paso para un ingeniero.
+

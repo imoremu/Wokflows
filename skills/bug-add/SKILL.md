@@ -2,7 +2,7 @@
 description: Registro de una nueva anomalía (bug) siguiendo el estándar Issue-as-Code (Distribuido)
 ---
 
-# Skill: Registro de Anomalía (/bug-add)
+# Skill: Registro de Anomalía (/bug-add-workflow)
 
 Este flujo implementa el estándar de **Issue-as-Code distribuido v3.0**, donde cada componente es responsable de su propio historial de calidad, integrándose con la visión global.
 
@@ -82,3 +82,4 @@ Los estados permitidos para el campo `status` son:
 - **superseded**: Anomalía corregida debida a un cambio previo por otra tarea o anomalía. Implica que no hay cambio trazado con ella.
 - **blocked**: Anomalía bloqueada por dependencias externas o impedimentos.
 - **rejected**: Anomalía descartada (no reproducible, duplicada, etc.).
+

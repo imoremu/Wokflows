@@ -2,7 +2,7 @@
 description: Revisión específica de correcciones de bugs
 ---
 
-# Skill: Review Fix (/review-fix)
+# Skill: Review Fix (/review-fix-workflow)
 
 Este flujo (ahora skill) está especializado en revisar y validar que la corrección aplicada a un Bug (Anomalía) es válida, completa y segura.
 
@@ -25,3 +25,4 @@ Emitir un veredicto claro y tajante determinando si la corrección es suficiente
 
 ### 4. Generar Reporte
 Documentar los hallazgos basándose en el veredicto. Guardar en `docs/review/code_reviews/code_review_report - [Fase] - Re-Review [Bug ID].md`.
+

@@ -2,7 +2,7 @@
 description: Generar el backlog técnico asignable a equipos/agentes en formato JSON.
 ---
 
-# Skill: Generación de Lista de Tareas (/task-list)
+# Skill: Generación de Lista de Tareas (/task-list-workflow)
 
 Este flujo se encarga de transformar el plan de trabajo y la arquitectura en un backlog técnico estructurado para procesamiento automatizado.
 
@@ -38,3 +38,4 @@ Basándote en el Plan de Trabajo y la Arquitectura, genera la lista de tareas t�
 ```
 
 **IMPORTANTE:** Devuelve solo el JSON puro, sin bloques de código markdown ni explicaciones adicionales.
+

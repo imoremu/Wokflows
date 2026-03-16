@@ -1,6 +1,0 @@
-# Wokflows Internal Management (Ignored for clean submodule distribution)
-task_config.yaml
-docs/plan/tasks/
-packages/*/docs/backlog/
-actions/*/docs/backlog/
-.agents/

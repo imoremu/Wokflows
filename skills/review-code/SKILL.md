@@ -2,7 +2,7 @@
 description: Realiza una revisión de código completa
 ---
 
-# Skill: Code Review (/review-code)
+# Skill: Code Review (/review-code-workflow)
 
 Este flujo (ahora skill) orquesta la revisión del código para asegurar que cumple con los estándares de calidad del proyecto.
 
@@ -25,3 +25,4 @@ Documentar los hallazgos estructuradamente. (Usualmente guardado en la carpeta `
 
 ### 4. Veredicto Final
 Informar al usuario si el código es "Apto para producción" (Pasa los mínimos) o si requiere correcciones obligatorias pre-commit.
+

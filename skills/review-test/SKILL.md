@@ -2,7 +2,7 @@
 description: Evaluación de la calidad de la suite de pruebas
 ---
 
-# Skill: Test Review (/review-test)
+# Skill: Test Review (/review-test-workflow)
 
 Este flujo (ahora skill) audita la suite de pruebas completa y valora su calidad y completitud, alertando si hay deficiencias.
 
@@ -30,4 +30,5 @@ Analizar y puntuar sobre 10 siguiendo estos tres pilares:
 Guardar el informe detallado (ej. en `docs/review/test_reviews/`). Debe incluir una sección explícita de "Features Huérfanas" si se detectan.
 
 ### 5. Actualización de Plan
-Calcular una puntuación global sobre 10. Si el reporte da una puntuación < 8, usar el workflow de registro de anomalías (`/bug-add` o la skill correspondiente) y actualizar el Execution Plan.
+Calcular una puntuación global sobre 10. Si el reporte da una puntuación < 8, usar el workflow de registro de anomalías (`/bug-add-workflow` o la skill correspondiente) y actualizar el Execution Plan.
+

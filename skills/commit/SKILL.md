@@ -2,7 +2,7 @@
 description: Generates a commit message based on current changes and rules (Multi-commit enabled)
 ---
 
-# Skill: Commit Inteligente y Distribuido v3.0 (/commit)
+# Skill: Commit Inteligente y Distribuido v3.0 (/commit-workflow)
 
 Este workflow (ahora skill) analiza los cambios pendientes, los agrupa funcionalmente y genera los commits siguiendo los estándares de **Aprexx v3.0**.
 
@@ -41,3 +41,4 @@ e. **Ejemplo Técnico**:
 ### 4. Limpieza de Basura (Housekeeping)
 - Eliminar ficheros temporales y artefactos de pruebas detectados en el análisis.
 - Preguntar al usuario sobre ficheros untracked irrelevantes.
+

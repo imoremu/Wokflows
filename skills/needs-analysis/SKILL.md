@@ -2,7 +2,7 @@
 description: Cuantificar requisitos no funcionales, riesgos de compliance y viabilidad de APIs.
 ---
 
-# Skill: Análisis de Necesidades Técnicas (/needs-analysis)
+# Skill: Análisis de Necesidades Técnicas (/needs-analysis-workflow)
 
 **Objetivo:** Cuantificar requisitos no funcionales, riesgos de compliance y viabilidad de APIs.
 
@@ -27,3 +27,4 @@ Incluye filas para: Usuarios Concurrentes, Latencia, Almacenamiento, RPS, Escala
 
 ### SALIDA ESPERADA:
 Informe en un fichero Markdown de nombre `needs_analysis.md`, en el mismo directorio que los ficheros de entrada y con la tabla detallada y cuantificada.
+

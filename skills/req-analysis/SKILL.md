@@ -2,7 +2,7 @@
 description: Identificar ambigüedades, asunciones y conflictos en los requisitos originales.
 ---
 
-# Skill: Análisis de Requisitos Funcionales (/req-analysis)
+# Skill: Análisis de Requisitos Funcionales (/req-analysis-workflow)
 
 Este flujo se encarga de procesar los requisitos brutos de un proyecto para asegurar su claridad y accionabilidad.
 

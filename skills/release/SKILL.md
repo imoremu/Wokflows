@@ -2,7 +2,7 @@
 description: Gestión de lanzamientos y etiquetado de versiones (Release Management)
 ---
 
-# Skill: Gestión de Lanzamientos (/release)
+# Skill: Gestión de Lanzamientos (/release-workflow)
 
 Esta skill formaliza el cierre de una versión del proyecto, asegurando que todos los entregables estén listos y etiquetados correctamente en Git.
 
@@ -10,8 +10,8 @@ Esta skill formaliza el cierre de una versión del proyecto, asegurando que todo
 
 ### 1. Validación Pre-Release
 - Verificar que no hay cambios pendientes sin commitear (staged o unstaged).
-- Ejecutar `/review-test` y `/review-code` de forma global si es necesario.
-- Confirmar que el `CHANGELOG.md` está actualizado (e invocar `/manage-docs` si no lo está).
+- Ejecutar `/review-test-workflow` y `/review-code-workflow` de forma global si es necesario.
+- Confirmar que el `CHANGELOG.md` está actualizado (e invocar `/manage-docs-workflow` si no lo está).
 
 ### 2. Identificación de la Versión
 - Leer la versión actual de la configuración del proyecto (`task_config.yaml` -> `project.version`).
@@ -31,3 +31,4 @@ Esta skill formaliza el cierre de una versión del proyecto, asegurando que todo
 
 ### 5. Notificación
 - Generar un resumen de la release para ser compartido (extraído del CHANGELOG).
+

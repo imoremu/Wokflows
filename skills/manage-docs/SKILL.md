@@ -2,7 +2,7 @@
 description: Gestión y actualización minimalista de la documentación del proyecto.
 ---
 
-# Skill: Gestión de Documentación (/manage-docs)
+# Skill: Gestión de Documentación (/manage-docs-workflow)
 
 Esta skill orquesta la actualización de los documentos del proyecto definidos en `docs_config.yaml`, asegurando que se mantengan alineados con los cambios técnicos sin añadir ruido innecesario.
 
@@ -44,3 +44,4 @@ Para cada documento afectado:
 ### 5. Sincronización
 - Confirmar que los cambios en la documentación reflejan fielmente la implementación técnica actual.
 - Validar que la propuesta de versión en el CHANGELOG es coherente con los cambios realizados.
+
