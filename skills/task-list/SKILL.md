@@ -1,4 +1,5 @@
 ---
+name: task-list
 description: Generar el backlog técnico asignable a equipos/agentes en formato JSON.
 ---
 

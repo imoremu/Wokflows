@@ -1,4 +1,5 @@
 ---
+name: task-dev
 description: Ciclo de desarrollo completo para una tarea del backlog (BDD -> TDD -> Dev -> QA -> Doc)
 ---
 

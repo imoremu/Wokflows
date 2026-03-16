@@ -1,4 +1,5 @@
 ---
+name: bug-add
 description: Registro de una nueva anomalía (bug) siguiendo el estándar Issue-as-Code (Distribuido)
 ---
 

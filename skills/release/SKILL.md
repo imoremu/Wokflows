@@ -1,4 +1,5 @@
 ---
+name: release
 description: Gestión de lanzamientos y etiquetado de versiones (Release Management)
 ---
 

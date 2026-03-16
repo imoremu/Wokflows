@@ -1,4 +1,5 @@
 ---
+name: generate-bdd
 description: Generates a new BDD feature file following project standards
 ---
 

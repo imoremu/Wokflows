@@ -1,4 +1,5 @@
 ---
+name: task-add
 description: Añade una nueva tarea al backlog del producto siguiendo estándares de Issue-as-Code v3.0
 ---
 

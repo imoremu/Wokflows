@@ -1,4 +1,5 @@
 ---
+name: bug-fix
 description: Ciclo completo para la resolución de anomalías (bugs) detectadas.
 ---
 

@@ -1,4 +1,5 @@
 ---
+name: platform-plan
 description: Definir la infraestructura, tecnologías y estrategia de escalado/lock-in.
 ---
 

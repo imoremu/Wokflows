@@ -1,4 +1,5 @@
 ---
+name: commit-message-generate
 description: Genera una propuesta de mensaje de commit analizando el contexto actual de cambios.
 ---
 

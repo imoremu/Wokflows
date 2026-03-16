@@ -1,4 +1,5 @@
 ---
+name: commit
 description: Generates a commit message based on current changes and rules (Multi-commit enabled)
 ---
 

@@ -1,4 +1,5 @@
 ---
+name: needs-analysis
 description: Cuantificar requisitos no funcionales, riesgos de compliance y viabilidad de APIs.
 ---
 

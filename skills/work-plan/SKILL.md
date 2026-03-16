@@ -1,4 +1,5 @@
 ---
+name: work-plan
 description: Crear la estrategia de desarrollo y generar tareas en el backlog.
 ---
 

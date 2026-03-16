@@ -1,4 +1,5 @@
 ---
+name: manage-docs
 description: Gestión y actualización minimalista de la documentación del proyecto.
 ---
 

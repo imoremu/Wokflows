@@ -1,4 +1,5 @@
 ---
+name: req-analysis
 description: Identificar ambigüedades, asunciones y conflictos en los requisitos originales.
 ---
 
