@@ -27,9 +27,23 @@ Analizar y puntuar sobre 10 siguiendo estos tres pilares:
 * **Bloque de Integración (Flujo Real)**:
   - Validar testing del ciclo completo (ej. API -> Base de Datos) y persistencia real de los datos.
 
-### 4. Generar Reporte
-Guardar el informe detallado (ej. en `docs/review/test_reviews/`). Debe incluir una sección explícita de "Features Huérfanas" si se detectan.
+### 4. Generar Reporte Estandarizado
+Es OBLIGATORIO generar un reporte `.md` en `docs/review/test_reviews/` con la siguiente estructura:
 
-### 5. Actualización de Plan
-Calcular una puntuación global sobre 10. Si el reporte da una puntuación < 8, usar el workflow de registro de anomalías (`/bug-add-workflow` o la skill correspondiente) y actualizar el Execution Plan.
+#### Estructura del Reporte:
+1. **Resumen Ejecutivo**: Puntuación global (0-10) y veredicto.
+2. **Análisis Detallado por Área**: Por cada bloque (BDD, Unitario e Integración):
+   - **Puntuación**: [1-10]
+   - **Explicación**: Razonamiento detallado de la nota. (En BDD mencionar Features Huérfanas).
+   - **Puntos Fuertes**: Listado de aciertos en la implementación de pruebas.
+   - **Puntos de Mejora**: Listado de debilidades detectadas.
+3. **Plan de Acción (Backlog de Revisión)**: Un listado de todas las mejoras detectadas, clasificadas y ordenadas por criticidad:
+   - **🔴 CRÍTICO**: Bloqueante (ej. features huérfanas, fallos graves de aislamiento).
+   - **🟠 ALTA**: Urgente (ej. falta de tests edge cases críticos).
+   - **🟡 MEDIA**: Deuda técnica (ej. refactorización de fixtures).
+   - **🔵 BAJA**: Mejora menor (ej. nombres de tests más claros).
+
+4. **Resultado final**
+Calcular una puntuación global sobre 10. Informar al usuario si el código es "Apto para producción" (>8) o si requiere correcciones obligatorias pre-commit basándose en los puntos críticos y la nota global.
+
 

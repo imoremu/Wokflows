@@ -24,6 +24,13 @@ Emitir un veredicto claro y tajante determinando si la corrección es suficiente
 * ⚠️ **PARCIAL**: Falta algún detalle menor o test.
 * ❌ **NO RESUELTO**: El problema original persiste o se ha roto algo grave.
 
-### 4. Generar Reporte
-Documentar los hallazgos basándose en el veredicto. Guardar en `docs/review/code_reviews/code_review_report - [Fase] - Re-Review [Bug ID].md`.
+### 4. Generar Reporte de Validación
+Guardar en `docs/review/code_reviews/code_review_report - [Fase] - Re-Review [Bug ID].md` con la siguiente estructura simplificada:
+
+#### Estructura del Reporte:
+1. **Veredicto**: [RESUELTO / PARCIAL / NO RESUELTO]
+2. **Análisis de Validación**: Por cada punto (Root Cause, Tests, Regresiones):
+   - **Explicación**: Breve razonamiento del cumplimiento.
+   - **Puntos Fuertes/Debilidades** (si aplica).
+3. **Plan de Acción (si no está resuelto)**: Listado de mejoras por criticidad (🔴 CRÍTICO, 🟠 ALTA).
 

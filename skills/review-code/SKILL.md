@@ -15,15 +15,29 @@ Determinar qué archivos o bloques de código han sido modificados o deben ser r
 ### 2. Análisis Crítico (Code Reviewer)
 Analiza y puntúa (1-10) rigurosamente las siguientes áreas:
 * **Seguridad (CRÍTICO)**: Manejo de credenciales, protección contra inyecciones sql/xss, validación de inputs.
+* **Arquitectura**: Cumplimiento del diseño del sistema, patrones aplicados, acoplamiento y cohesión.
+* **Buenas Prácticas / Estándares**: Sigue las guías de estilo del proyecto (PEP8, naming conventions, etc.).
 * **Eficiencia**: Complejidad algorítmica y gestión de memoria/recursos.
 * **Testeabilidad (CRÍTICO)**: Facilidad para mockear dependencias, inversión de control y modularidad.
-* **Mantenibilidad**: Código Limpio, DRY, SOLID, división de responsabilidades y nombres descriptivos. Imports correctos.
+* **Mantenibilidad**: Código Limpio, DRY, SOLID, división de responsabilidades. Imports correctos.
 * **Documentación**: Presencia de docstrings obligatorios en clases y métodos. No debe haber apenas comentarios inline.
 * **Cumplimiento de Requisitos**: Trazabilidad e implementación correcta de lo solicitado.
 
-### 3. Generar Reporte
-Documentar los hallazgos estructuradamente. (Usualmente guardado en la carpeta `docs/review/code_reviews/` si existe, o presentado directamente al usuario). Asignar una puntuación global del 1 al 10.
+### 3. Generar Reporte Estandarizado
+Es OBLIGATORIO generar un archivo `.md` (usualmente en `docs/review/code_reviews/`) con la siguiente estructura:
 
-### 4. Veredicto Final
-Informar al usuario si el código es "Apto para producción" (Pasa los mínimos) o si requiere correcciones obligatorias pre-commit.
+#### Estructura del Reporte:
+1. **Resumen Ejecutivo**: Puntuación global y veredicto.
+2. **Análisis Detallado por Área**: Por cada una de las 8 áreas anteriores:
+   - **Puntuación**: [1-10]
+   - **Explicación**: Razonamiento detallado de la nota.
+   - **Puntos Fuertes**: Listado de aciertos técnicos.
+   - **Puntos de Mejora**: Listado de debilidades detectadas.
+3. **Plan de Acción (Backlog de Revisión)**: Un listado de todas las mejoras detectadas, clasificadas y ordenadas por criticidad:
+   - **🔴 CRÍTICO**: Bloquea el paso a producción.
+   - **🟠 ALTA**: Debería corregirse antes del merge.
+   - **🟡 MEDIA**: Deuda técnica a planificar.
+   - **🔵 BAJA**: Sugerencia de estilo o mejora menor.
+4. **Veredicto Final**
+Calcular una puntuación global sobre 10. Informar al usuario si el código es "Apto para producción" (>8) o si requiere correcciones obligatorias pre-commit basándose en los puntos críticos y la nota global.
 
