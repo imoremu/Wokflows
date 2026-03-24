@@ -18,7 +18,7 @@ Analiza y puntúa (1-10) rigurosamente las siguientes áreas:
 * **Arquitectura**: Cumplimiento del diseño del sistema, patrones aplicados, acoplamiento y cohesión.
 * **Buenas Prácticas / Estándares**: Sigue las guías de estilo del proyecto (PEP8, naming conventions, etc.).
 * **Eficiencia**: Complejidad algorítmica y gestión de memoria/recursos.
-* **Testeabilidad (CRÍTICO)**: Facilidad para mockear dependencias, inversión de control y modularidad.
+* **Testeabilidad (CRÍTICO)**: Capacidad intrínseca del código para ser probado (Inversión de Control, modularidad, mocking). NO mide la cobertura ni la existencia de tests, sino la facilidad o dificultad técnica para escribirlos.
 * **Mantenibilidad**: Código Limpio, DRY, SOLID, división de responsabilidades. Imports correctos.
 * **Documentación**: Presencia de docstrings obligatorios en clases y métodos. No debe haber apenas comentarios inline.
 * **Cumplimiento de Requisitos**: Trazabilidad e implementación correcta de lo solicitado.
