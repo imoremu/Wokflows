@@ -20,13 +20,16 @@ Este flujo (ahora skill) orquesta el ciclo completo de desarrollo de una tarea, 
 
 ### 1. Inicialización y Contexto
 - Cargar metadatos de la tarea (ID, Weight, Version, Effort).
+- Cargar la versión actual del proyecto desde `task_config.yaml` (`project.version`).
 - Si es **Component Mode**, identificar `parent_id` para actualizar métricas globales.
 - Si es **Master Mode**, cargar lista de tareas hijas pendientes.
 
 ### 2. Gestión de Esfuerzo (Inicio)
 - Confirmar `estimated_effort`.
 - Establecer `remaining_effort` inicial igual al estimado si es nueva.
-- **Actualizar Estado**: Cambiar `status` a `in_progress` (en curso).
+- **Actualización de Versión y Estado**: 
+    - Cambiar `status` a `in_progress` (en curso).
+    - **Obligatorio**: Actualizar el campo `version` de la tarea con la versión actual de `task_config.yaml`.
 
 ### 3. Ciclo de Desarrollo Técnico (Por cada Componente)
 Para cada componente afectado (secuencialmente en Master Mode, o el único en Component Mode):
@@ -56,7 +59,7 @@ Para cada componente afectado (secuencialmente en Master Mode, o el único en Co
 **Al completar una sesión o el total de un componente:**
 - Calcular `actual_effort` invertido en la sesión.
 - Actualizar `remaining_effort` en el archivo de la tarea (estimación de lo que falta).
-- Si el componente está terminado, marcar `status: completed`.
+- Si el componente está terminado, marcar `status: completed` y asegurar que `version` coincide con la actual de `task_config.yaml`.
 
 ### 5. Finalización y Commit
 - Generar un commit message estandarizado (usando lógica de `/commit-workflow`).

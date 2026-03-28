@@ -28,7 +28,17 @@ Nota: En caso de ser un bug de producción, el id informado a clientes y usuario
 - Calcular el ID secuencial basándose en los archivos existentes en la ruta final resuelta (`path` + `folders.bugs`).
 - **Resultado**: Nuevo ID de bug (ej: `B-[PRJ]-XXXX` o `B-[PRJ]-[COMP]-XXXX`) y ruta de archivo final.
 
-### 2. Creación del Archivo
+### 2. Asignación de Metadatos
+
+Al crear el bug, se aplican las siguientes reglas:
+- **Estado y Versión por Defecto**:
+    - `status: backlog`
+    - `version: ""` (vacío)
+- **Excepción (Asignación Explícita)**:
+    - Si el usuario indica explícitamente una versión, establecer `status: planned` y `version: [versión proporcionada]`.
+- Establecer fechas de creación (`created_at`) y actualización (`updated_at`).
+
+### 3. Creación del Archivo
 
 **Nombre del archivo:** `[ID]-descripcion-corta.md`
 
@@ -40,8 +50,8 @@ id: B-[PRJ]-[COMP]-XXXX
 title: "Título descriptivo"
 type: bug
 weight: [integer]
-version: "vX.Y"
-status: open | in_progress | completed | blocked
+version: ""
+status: backlog
 effort_unit: h
 estimated_effort: 0
 remaining_effort: 0
@@ -77,7 +87,9 @@ assets: [./assets/[ID]-evidencia.png]
 
 Los estados permitidos para el campo `status` son:
 
-- **open**: Anomalía registrada y pendiente de análisis.
+- **backlog**: Anomalía registrada y pendiente de priorizar (estado inicial por defecto).
+- **planned**: Anomalía asignada a una versión específica para su futura resolución.
+- **open**: Anomalía registrada y pendiente de análisis (opcional, si se prefiere sobre backlog).
 - **in_progress**: Anomalía en proceso de corrección ("En curso").
 - **completed**: Corrección implementada y verificada (reemplaza a 'closed' o 'resolved').
 - **superseded**: Anomalía corregida debida a un cambio previo por otra tarea o anomalía. Implica que no hay cambio trazado con ella.

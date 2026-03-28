@@ -20,7 +20,8 @@ Este flujo orquesta la resolución de bugs, soportando la jerarquía **Master/Co
 
 ### 1. Reproducción y Esfuerzo
 
-- Cargar metadatos del bug.
+- Cargar metadatos del bug y la versión actual de `task_config.yaml` (`project.version`).
+- **Actualización de Versión y Estado**: Cambiar el `status` a `in_progress` y actualizar el campo `version` del bug con la versión actual del proyecto.
 - Establecer `actual_effort` y actualizar `remaining_effort`.
 - **Fase de Pruebas**: Crear/actualizar BDD y Unit Test que capturen el fallo.
     - *Importante*: Integrar el escenario en un `.feature` de sistema existente, salvo que sea necesario crear una nueva funcionalidad no existente para resolver el bug. No crear archivos `.feature` nominales al bug o ID de tarea: los feature son de sistema, no de proceso.
@@ -40,6 +41,7 @@ Este flujo orquesta la resolución de bugs, soportando la jerarquía **Master/Co
 ### 4. Cierre y Documentación
 
 - Documentar la solución y actualizar métricas de esfuerzo en el archivo de backlog.
+- **Estado final**: Marcar `status: completed` y asegurar que `version` coincide con la actual de `task_config.yaml`.
 - Ejecutar la actualización de documentación del proyecto a través de `/manage-docs-workflow`.
 - Si es **Master Fix**, verificar si otros componentes requieren correcciones para el mismo problema.
 
