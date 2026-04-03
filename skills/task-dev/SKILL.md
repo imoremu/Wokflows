@@ -3,7 +3,7 @@ name: task-dev
 description: Ciclo de desarrollo completo para una tarea del backlog (BDD -> TDD -> Dev -> QA -> Doc)
 ---
 
-# Skill: Desarrollo de Tarea (/task-dev-workflow)
+# Skill: Desarrollo de Tarea (/task-dev)
 
 Este flujo (ahora skill) orquesta el ciclo completo de desarrollo de una tarea, soportando la jerarquía **Master/Componente v3.0**.
 
@@ -37,7 +37,7 @@ Para cada componente afectado (secuencialmente en Master Mode, o el único en Co
 #### 3.1 Fase BDD/TDD (Red Phase)
 - Definir escenarios en `<componente>/tests/bdd/features/` integrándolos en de un `.feature` de sistema existente.
 - Crear tests unitarios en `<componente>/tests/unit/` que cubran el cambio.
-- **Validación**: Ejecutar la revisión de tests (`/review-test-workflow`). Puntuación mínima de 8/10. NO se inicia la implementación sin tests validados.
+- **Validación**: Ejecutar la revisión de tests (`/review-test`). Puntuación mínima de 8/10. NO se inicia la implementación sin tests validados.
 - Confirmar que los tests fallan inicialmente (Estado Rojo).
 - **Human in the loop**: Solicitar confirmación del usuario antes de continuar.
 
@@ -47,13 +47,13 @@ Para cada componente afectado (secuencialmente en Master Mode, o el único en Co
 
 #### 3.3 Calidad y Revisión (QA Phase)
 - Ejecutar la suite de pruebas completa para descartar regresiones.
-- Ejecutar la revisión de código exhaustiva (`/review-code-workflow`). 
+- Ejecutar la revisión de código exhaustiva (`/review-code`). 
 - **Criterio**: Puntuación mínima de 8/10 en inspecciones de seguridad y testeabilidad.
 - **Human in the loop**: Solicitar confirmación del usuario antes de continuar.
 
 #### 3.4 Sincronización de Diseño (Sync Phase)
 - Revisar si el código altera el diseño técnico macro.
-- Generar o actualizar los documentos definidos en `docs_config.yaml` usando la skill `/manage-docs-workflow`, asegurando un enfoque minimalista y útil.
+- Generar o actualizar los documentos definidos en `docs_config.yaml` usando la skill `/manage-docs`, asegurando un enfoque minimalista y útil.
 
 ### 4. Actualización de Métricas y Esfuerzo
 **Al completar una sesión o el total de un componente:**
@@ -62,6 +62,6 @@ Para cada componente afectado (secuencialmente en Master Mode, o el único en Co
 - Si el componente está terminado, marcar `status: completed` y asegurar que `version` coincide con la actual de `task_config.yaml`.
 
 ### 5. Finalización y Commit
-- Generar un commit message estandarizado (usando lógica de `/commit-workflow`).
+- Generar un commit message estandarizado (usando lógica de `/commit`).
 - Si es **Master Mode**, verificar si todos los componentes hijos están completados. Si es así, cerrar la Tarea Maestra (`completed`).
 

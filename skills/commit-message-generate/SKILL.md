@@ -3,7 +3,7 @@ name: commit-message-generate
 description: Genera una propuesta de mensaje de commit analizando el contexto actual de cambios.
 ---
 
-# Skill: Generador Rápido de Commit (/commit-message-generate-workflow)
+# Skill: Generador Rápido de Commit (/commit-message-generate)
 
 Esta skill genera una propuesta única de mensaje de commit basada exclusivamente en el **contexto de la conversación actual** y la **última tarea o bug** discutido en el hilo.
 

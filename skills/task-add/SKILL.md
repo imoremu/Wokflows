@@ -3,7 +3,7 @@ name: task-add
 description: Añade una nueva tarea al backlog del producto siguiendo estándares de Issue-as-Code v3.0
 ---
 
-# Skill: Añadir Tarea al Backlog (/task-add-workflow)
+# Skill: Añadir Tarea al Backlog (/task-add)
 
 Este flujo (ahora skill) permite registrar tareas pendientes en el backlog del producto, siguiendo el estándar **Issue-as-Code distribuido v3.0 (Master/Componente)**.
 

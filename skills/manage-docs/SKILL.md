@@ -3,7 +3,7 @@ name: manage-docs
 description: Gestión y actualización minimalista de la documentación del proyecto.
 ---
 
-# Skill: Gestión de Documentación (/manage-docs-workflow)
+# Skill: Gestión de Documentación (/manage-docs)
 
 Esta skill orquesta la actualización de los documentos del proyecto definidos en `docs_config.yaml`, asegurando que se mantengan alineados con los cambios técnicos sin añadir ruido innecesario.
 

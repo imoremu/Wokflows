@@ -3,7 +3,7 @@ name: review-fix
 description: Revisión específica de correcciones de bugs
 ---
 
-# Skill: Review Fix (/review-fix-workflow)
+# Skill: Review Fix (/review-fix)
 
 Este flujo (ahora skill) está especializado en revisar y validar que la corrección aplicada a un Bug (Anomalía) es válida, completa y segura.
 

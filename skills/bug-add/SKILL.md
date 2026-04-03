@@ -3,7 +3,7 @@ name: bug-add
 description: Registro de una nueva anomalía (bug) siguiendo el estándar Issue-as-Code (Distribuido)
 ---
 
-# Skill: Registro de Anomalía (/bug-add-workflow)
+# Skill: Registro de Anomalía (/bug-add)
 
 Este flujo implementa el estándar de **Issue-as-Code distribuido v3.0**, donde cada componente es responsable de su propio historial de calidad, integrándose con la visión global.
 

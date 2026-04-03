@@ -3,7 +3,7 @@ name: review-test
 description: Evaluación de la calidad de la suite de pruebas
 ---
 
-# Skill: Test Review (/review-test-workflow)
+# Skill: Test Review (/review-test)
 
 Este flujo (ahora skill) audita la suite de pruebas completa y valora su calidad y completitud, alertando si hay deficiencias.
 

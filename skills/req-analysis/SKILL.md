@@ -3,7 +3,7 @@ name: req-analysis
 description: Identificar ambigüedades, asunciones y conflictos en los requisitos originales.
 ---
 
-# Skill: Análisis de Requisitos Funcionales (/req-analysis-workflow)
+# Skill: Análisis de Requisitos Funcionales (/req-analysis)
 
 Este flujo se encarga de procesar los requisitos brutos de un proyecto para asegurar su claridad y accionabilidad.
 

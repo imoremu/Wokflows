@@ -3,7 +3,7 @@ name: needs-analysis
 description: Cuantificar requisitos no funcionales, riesgos de compliance y viabilidad de APIs.
 ---
 
-# Skill: Análisis de Necesidades Técnicas (/needs-analysis-workflow)
+# Skill: Análisis de Necesidades Técnicas (/needs-analysis)
 
 **Objetivo:** Cuantificar requisitos no funcionales, riesgos de compliance y viabilidad de APIs.
 

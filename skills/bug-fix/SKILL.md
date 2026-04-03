@@ -3,7 +3,7 @@ name: bug-fix
 description: Ciclo completo para la resolución de anomalías (bugs) detectadas.
 ---
 
-# Skill: Resolución de Anomalías (/bug-fix-workflow)
+# Skill: Resolución de Anomalías (/bug-fix)
 
 Este flujo orquesta la resolución de bugs, soportando la jerarquía **Master/Componente v3.0**.
 
@@ -42,7 +42,7 @@ Este flujo orquesta la resolución de bugs, soportando la jerarquía **Master/Co
 
 - Documentar la solución y actualizar métricas de esfuerzo en el archivo de backlog.
 - **Estado final**: Marcar `status: completed` y asegurar que `version` coincide con la actual de `task_config.yaml`.
-- Ejecutar la actualización de documentación del proyecto a través de `/manage-docs-workflow`.
+- Ejecutar la actualización de documentación del proyecto a través de `/manage-docs`.
 - Si es **Master Fix**, verificar si otros componentes requieren correcciones para el mismo problema.
 
 ### 5. Persistencia

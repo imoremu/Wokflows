@@ -3,7 +3,7 @@ name: commit
 description: Generates a commit message based on current changes and rules (Multi-commit enabled)
 ---
 
-# Skill: Commit Inteligente y Distribuido v3.0 (/commit-workflow)
+# Skill: Commit Inteligente y Distribuido v3.0 (/commit)
 
 Este workflow (ahora skill) analiza los cambios pendientes, los agrupa funcionalmente y genera los commits siguiendo los estándares de **Aprexx v3.0**.
 

@@ -3,7 +3,7 @@ name: generate-bdd
 description: Generates a new BDD feature file following project standards
 ---
 
-# Skill: Generate BDD (/generate-bdd-workflow)
+# Skill: Generate BDD (/generate-bdd)
 
 This workflow (now skill) guides the agent in creating a new BDD feature file. It integrates the core workflow steps and relies on BDD generation standards.
 

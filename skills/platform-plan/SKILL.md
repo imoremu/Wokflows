@@ -3,7 +3,7 @@ name: platform-plan
 description: Definir la infraestructura, tecnologías y estrategia de escalado/lock-in.
 ---
 
-# Skill: Necesidades de Plataforma (/platform-plan-workflow)
+# Skill: Necesidades de Plataforma (/platform-plan)
 
 **Objetivo:** Definir la infraestructura, tecnologías y estrategia de escalado/lock-in.
 

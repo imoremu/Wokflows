@@ -3,7 +3,7 @@ name: work-plan
 description: Crear la estrategia de desarrollo y generar tareas en el backlog.
 ---
 
-# Skill: Plan de Trabajo (/work-plan-workflow)
+# Skill: Plan de Trabajo (/work-plan)
 
 **Objetivo:** Crear la estrategia de desarrollo basada en las tecnologías elegidas y automatizar la creación de tareas.
 
@@ -28,13 +28,13 @@ Genera un plan de desarrollo técnico detallado basado EXCLUSIVAMENTE en la arqu
 Un resumen del plan de trabajo en un fichero Markdown de nombre `work_plan.md`, en el mismo directorio que los ficheros de entrada y que explique las fases de desarrollo, hitos principales y estrategia de integración continua.
 
 ### Fase 2: Automatización del Backlog (Task Creation)
-Una vez generado el `work_plan.md`, procede a registrar cada una de las tareas identificadas en el sistema de backlog utilizando la skill `/task-add-workflow`.
+Una vez generado el `work_plan.md`, procede a registrar cada una de las tareas identificadas en el sistema de backlog utilizando la skill `/task-add`.
 
 **Reglas de Priorización (Weighting):**
 - La prioridad de las tareas debe ser **ascendente**.
 - El peso inicial debe ser **superior a 100** (o el valor indicado por el usuario).
 - Se debe dejar una separación de **10 puntos** entre cada tarea (ej. 110, 120, 130...).
-- Para cada tarea del plan, invoca `/task-add-workflow` proporcionando el título, objetivo técnico y criterios de aceptación derivados del plan.
+- Para cada tarea del plan, invoca `/task-add` proporcionando el título, objetivo técnico y criterios de aceptación derivados del plan.
 
 **SALIDA ESPERADA:**
 Confirmación del plan generado y lista de IDs de tareas maestras (`T-[PRJ]-XXXX`) y de componente (`T-[PRJ]-[COMP]-XXXX`) creadas.
