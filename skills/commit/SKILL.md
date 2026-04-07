@@ -10,6 +10,9 @@ Este workflow (ahora skill) analiza los cambios pendientes, los agrupa funcional
 ## Pasos de la Skill
 
 ### 1. Análisis y Agrupación
+- **Validar rama activa**:
+  - Si la rama es `main`, **advertir** al usuario: "Estás en main. Los commits directos en main no están permitidos por la estrategia de ramas. ¿Deseas continuar de todas formas?" Solo continuar con confirmación explícita.
+  - Ramas válidas: `release/vX.Y`, `hotfix/vX.Y.Z`.
 - Analizar todos los archivos modificados, en stage y **untracked**.
 - Agrupar los cambios en bloques con sentido funcional. 
 - **Regla Oro**: No debe quedar ningún archivo modificado o nuevo sin procesar. Si un archivo no encaja en un bloque mayor, crear un bloque `chore` o `refactor` adicional.

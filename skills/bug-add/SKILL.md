@@ -36,6 +36,10 @@ Al crear el bug, se aplican las siguientes reglas:
     - `version: ""` (vacío)
 - **Excepción (Asignación Explícita)**:
     - Si el usuario indica explícitamente una versión, establecer `status: planned` y `version: [versión proporcionada]`.
+- **Asignación automática desde rama**:
+    - Si la rama activa sigue el patrón `release/vX.Y`, proponer `version: "vX.Y.0"` y `status: planned`.
+    - Si la rama activa sigue el patrón `hotfix/vX.Y.Z`, proponer `version: "vX.Y.Z"` y `status: planned`.
+    - El usuario puede rechazar la asignación automática.
 - Establecer fechas de creación (`created_at`) y actualización (`updated_at`).
 
 ### 3. Creación del Archivo

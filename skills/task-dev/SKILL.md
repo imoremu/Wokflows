@@ -19,8 +19,12 @@ Este flujo (ahora skill) orquesta el ciclo completo de desarrollo de una tarea, 
 ## Workflow Completo
 
 ### 1. Inicialización y Contexto
+- **Validar rama de trabajo**:
+  - La rama activa debe seguir el patrón `release/vX.Y` o `hotfix/vX.Y.Z`.
+  - Si la rama es `main`, **abortar** con mensaje: "No se puede desarrollar directamente en main. Usa `/start-version` para crear un bloque funcional o crea una rama hotfix."
 - Cargar metadatos de la tarea (ID, Weight, Version, Effort).
 - Cargar la versión actual del proyecto desde `task_config.yaml` (`project.version`).
+- **Coherencia de versión**: Verificar que el campo `version` de la tarea (si ya tiene uno asignado) coincide con la versión de la rama activa. Si no coincide, advertir al usuario.
 - Si es **Component Mode**, identificar `parent_id` para actualizar métricas globales.
 - Si es **Master Mode**, cargar lista de tareas hijas pendientes.
 

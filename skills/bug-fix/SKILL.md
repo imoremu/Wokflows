@@ -18,10 +18,23 @@ Este flujo orquesta la resolución de bugs, soportando la jerarquía **Master/Co
 
 ## Pasos de la Skill
 
+### 0. Clasificación de Urgencia y Rama de Trabajo
+- Preguntar al usuario: **"¿Este bug es urgente y necesita llegar a producción inmediatamente (hotfix), o puede resolverse dentro del bloque funcional actual (release)?"**
+- **Si hotfix**:
+  - Identificar la versión de producción afectada (último tag en `main`).
+  - Calcular la versión patch: si el último tag es `vX.Y.Z`, la rama será `hotfix/vX.Y.(Z+1)`.
+  - Crear la rama desde el tag: `git checkout -b hotfix/vX.Y.Z vX.Y.(Z-1)` (o el tag correspondiente).
+  - Actualizar la versión en los manifiestos al patch correspondiente.
+  - Commit inicial: `chore(hotfix): start hotfix vX.Y.Z`
+- **Si no urgente**:
+  - Verificar que la rama activa es `release/vX.Y`.
+  - Si no lo es, advertir al usuario y sugerir cambiar a la rama release activa.
+- En ambos casos, actualizar el campo `version` del bug con la versión de la rama de trabajo.
+
 ### 1. Reproducción y Esfuerzo
 
 - Cargar metadatos del bug y la versión actual de `task_config.yaml` (`project.version`).
-- **Actualización de Versión y Estado**: Cambiar el `status` a `in_progress` y actualizar el campo `version` del bug con la versión actual del proyecto.
+- **Actualización de Estado**: Cambiar el `status` a `in_progress`. (La versión ya fue asignada en el paso 0.)
 - Establecer `actual_effort` y actualizar `remaining_effort`.
 - **Fase de Pruebas**: Crear/actualizar BDD y Unit Test que capturen el fallo.
     - *Importante*: Integrar el escenario en un `.feature` de sistema existente, salvo que sea necesario crear una nueva funcionalidad no existente para resolver el bug. No crear archivos `.feature` nominales al bug o ID de tarea: los feature son de sistema, no de proceso.

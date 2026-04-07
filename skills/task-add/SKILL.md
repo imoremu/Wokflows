@@ -42,6 +42,9 @@ En el archivo `task_config.yaml` se definen el prefijo del proyecto (`[PRJ]`), e
     - `version: ""` (vacío)
 - **Excepción (Asignación Explícita)**:
     - Si el usuario indica explícitamente una versión, establecer `status: planned` y `version: [versión proporcionada]`.
+- **Asignación automática desde rama**:
+    - Si la rama activa sigue el patrón `release/vX.Y`, proponer automáticamente `version: "vX.Y.0"` y `status: planned`.
+    - El usuario puede rechazar la asignación automática (ej. para tareas que se dejan en backlog para futuras versiones).
 - Establecer fechas de creación (`created_at`) y actualización (`updated_at`).
 
 ### 3. Creación del Archivo

@@ -224,6 +224,28 @@ B-[PRJ]-[COMP]-XXXX       # Bug de Componente
 
 `[PRJ]` y `[COMP]` se configuran en `task_config.yaml` de cada proyecto.
 
+### Definición de Tareas y Campos (Frontmatter)
+
+Cada tarea o anomalía se define mediante un archivo Markdown que incluye un *frontmatter* en formato YAML con metadatos requeridos por los workflows y hooks pre-release.
+
+**Campos principales:**
+- `id`: Identificador único (ej. `T-[PRJ]-XXXX`).
+- `title`: Título analítico de la tarea.
+- `type`: Clasificación técnica o de negocio (ej. `funcional`, `feature`, `bug`, `despliegue`, `refactor`).
+- `weight`: Prioridad numérica ascendente (0-10 Crítica, 10-100 Alta, 100-1000 Desarrollo, >1000 Roadmap).
+- `version`: Target version a la que pertenece la tarea (se asigna automáticamente al trabajar en ramas `release/` o `hotfix/`).
+- `status`: Estado del ciclo de vida. Los valores funcionales incluyen:
+  - `backlog`: Tarea registrada, en pila general.
+  - `planned`: Tarea asignada a una versión futura.
+  - `in_progress`: Tarea en desarrollo técnico.
+  - `blocked`: Bloqueada temporalmente por dependencias.
+  - `completed`: Completada con éxito y QA pasado. **(Estado de cierre)**
+  - `cancelled`: Tarea descartada o rechazada. **(Estado de cierre)**
+  - `superseded`: Resuelta implícitamente por el progreso u otras tareas combinadas. **(Estado de cierre)**
+- `effort_unit`: Tracking format (e.g. `h` para horas).
+- `estimated_effort`, `remaining_effort`, `actual_effort`: Tracking de tiempo asimilado durante las sesiones de coding iterativo.
+- `parent_id` *(Opcional)*: FK a Tarea Maestra vinculada desde Componente.
+
 ### BDD — Regla de Idioma
 
 ```gherkin
@@ -237,16 +259,9 @@ Característica: Título en español
 
 Keywords y contenido **siempre en español**.
 
-### Política de Versionado WDSV (Workflow-Driven)
+### Política de Versionado y Estrategia de Ramas
 
-Basada en Semantic Versioning 2.0.0, donde la versión técnica es el resultado del cierre de objetivos:
-- **MAJOR**: Grandes hitos de proyecto o versiones finales entregables.
-- **MINOR**: Nueva funcionalidad completa (cierre de un paquete de Tareas Maestras).
-- **PATCH**: Correcciones de errores o retoques de estabilidad.
-
-**Gestión de Flujo:**
-1. **Intención**: Se usa el campo `version` en las tareas para agrupar el trabajo futuro. Permite subir código a `main` continuamente sin burocracia.
-2. **Cierre**: El comando `/release` oficializa la versión creando el **Git Tag** y el `CHANGELOG.md` acumulado solo cuando el conjunto de tareas está listo.
+La gestión de lanzamientos, el versionado semántico (WDSV) y el flujo de ramas basado en modos restrictivos (release/hotfix) están definidos detalladamente en el documento adjunto: [Estrategia de Ramas](./branch_strategy.md).
 
 ### Flujo de Desarrollo Estándar (dev-flow)
 

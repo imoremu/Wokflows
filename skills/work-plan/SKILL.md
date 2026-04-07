@@ -30,6 +30,12 @@ Un resumen del plan de trabajo en un fichero Markdown de nombre `work_plan.md`, 
 ### Fase 2: Automatización del Backlog (Task Creation)
 Una vez generado el `work_plan.md`, procede a registrar cada una de las tareas identificadas en el sistema de backlog utilizando la skill `/task-add`.
 
+**Asignación de Versión Target:**
+- Solicitar al usuario la versión target para este plan de trabajo (ej. `v1.2`).
+- Todas las tareas generadas se crearán con `version: "vX.Y.0"` y `status: planned`.
+- Si el usuario no especifica versión, las tareas se crean con `version: ""` y `status: backlog` (por defecto).
+- Agrupar las tareas en el resumen final por versión target para facilitar la trazabilidad con las ramas `release/`.
+
 **Reglas de Priorización (Weighting):**
 - La prioridad de las tareas debe ser **ascendente**.
 - El peso inicial debe ser **superior a 100** (o el valor indicado por el usuario).
